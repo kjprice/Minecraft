@@ -1,6 +1,7 @@
 import os
 
 from ..common.tools import ensure_directory_exists
+from ..common.config import BEHAVIOR_PACK_ROOT_DIR
 
 def create_template_filepath(structure_name: str):
     filename = '{}_template.mcstructure'.format(structure_name)
@@ -9,9 +10,6 @@ def create_template_filepath(structure_name: str):
 def load_template(name: str):
     with open(create_template_filepath(name), 'rb') as f:
         return f.read()
-
-# TODO: decouple from minecraft_function.py
-BEHAVIOR_PACK_ROOT_DIR = 'minecraft_behavior_packs'
 
 class MinecraftCommandBlockStructure():
     # Globals

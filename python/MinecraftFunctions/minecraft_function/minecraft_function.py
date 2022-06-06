@@ -2,8 +2,8 @@ import os
 from unittest.mock import patch, MagicMock
 
 from ...common import unit_test
+from ...common.config import BEHAVIOR_PACK_ROOT_DIR
 
-BEHAVIOR_PACK_ROOT_DIR = 'minecraft_behavior_packs'
 
 class MinecraftFunction():
     filepath = None
