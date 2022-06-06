@@ -1,0 +1,9 @@
+*.pyc
+minecraft_servers/**/*.ldb
+minecraft_servers/**/*.db
+minecraft_servers/**/*.log
+minecraft_servers/**/*.dat
+minecraft_servers/**/MANIFEST-*
+minecraft_behavior_packs/collage_behavior_pack/blocks/*.json
+minecraft_resource_packs/collage_resource_pack/textures/blocks/*.png
+# minecraft_behavior_packs/collage_behavior_pack/blocks/collage0x0.json
