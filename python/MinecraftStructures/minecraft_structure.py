@@ -24,7 +24,8 @@ def save_structure(name: str, structure_text: str):
 class MinecraftCommandBlockStructure():
     # Globals
     TEMPLATE_COMMAND = 'say hi'
-    STRUCTURE_TAGS = [TEMPLATE_COMMAND]
+    TEMPLATE_AUTO = 'auto'
+    STRUCTURE_TAGS = [TEMPLATE_COMMAND, TEMPLATE_AUTO]
 
     # User provided
     name = None
@@ -33,7 +34,7 @@ class MinecraftCommandBlockStructure():
     structure_raw = None
     structure_array = None
     structure_tag_positions = {}
-    def __init__(self, name: str, cmd: str) -> None:
+    def __init__(self, name: str, cmd: str, auto_run=False) -> None:
         self.name = name
         self.structure_raw = self.load()
 
@@ -42,7 +43,16 @@ class MinecraftCommandBlockStructure():
         self.find_structure_tags()
 
         self.set_structure_command(cmd)
+        self.set_structure_auto_run(auto_run)
         self.save()
+    
+    def save_structure_array(self):
+        text_list = []
+        for s in self.structure_array:
+            text_list.append(str(s))
+        text = '\n'.join(text_list)
+        with open('structure_array.txt', 'w') as f:
+            f.write(text)
     
     def get_command_for_function(self, x = 0, y = 0, z = 0):
         return 'structure load {} ~{} ~{} ~{}'.format(self.name, x, y, z)
@@ -104,11 +114,22 @@ class MinecraftCommandBlockStructure():
         # print(self.structure_array[130:145])
 
     def set_structure_command(self, command: str):
-        self.set_structure_tag(self.TEMPLATE_COMMAND, command)
-        pass
+        tag_position = self.structure_tag_positions[self.TEMPLATE_COMMAND]
+        self.structure_array[tag_position] = command
+
+        tag_position_text_length = tag_position - 2
+        self.structure_array[tag_position_text_length] = len(command)
+        # self.set_structure_tag(self.TEMPLATE_COMMAND, command)
+
+    def set_structure_auto_run(self, auto_run):
+        tag_position = self.structure_tag_positions[self.TEMPLATE_AUTO]
+        self.structure_array[tag_position + 1] = 1 if auto_run else 0
 
     def save(self):
         save_structure(self.name, self.implode_structure_array())
 
-a = MinecraftCommandBlockStructure("give_dirt", "give @p command_block")
-print(a.get_command_for_function())
+a = MinecraftCommandBlockStructure("give_dirt", "give @p command_block", True)
+# print(a.get_command_for_function())
+# a.save_structure_array()
+#  print(a.structure_array)
+
