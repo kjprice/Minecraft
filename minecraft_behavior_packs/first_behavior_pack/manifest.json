@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "first_behavior_pack",
+        "name": "First Behavior Pack",
+        "uuid": "ee649bcf-256c-0001-9068-6a802b89d756",
+        "version": [ 0, 0, 1 ],
+        "min_engine_version": [ 1, 18, 10 ]
+    },
+    "modules": [
+        {
+            "description": "First Behavior Pack",
+            "type": "data",
+            "uuid": "fa6e90c8-c925-0001-8155-c8a60b753caa",
+            "version": [0, 0, 1]
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Basic resource pack - could be used as a template",
+    "name": "Basic Resource Pack",
+    "uuid": "858eb5be-3590-4be7-a81d-86cb833ecc6d",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      16,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "description": "Basic Resource Pack add-on",
+      "type": "resources",
+      "uuid": "08727587-e1a1-451b-937d-f009e35498f8",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}

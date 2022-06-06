@@ -1,0 +1,25 @@
+{
+    "format_version": 2,
+    "header": {
+      "description": "Basic behavior pack Template",
+      "name": "Basic behavior pack",
+      "uuid":"391e324f-6f2f-4cf2-8116-6cbab8836cbc",
+      "version": [1, 0, 0],
+      "min_engine_version": [1, 16, 0]
+    },
+    "modules":
+      [
+        {
+          "description": "Basic Add-On",
+            "type": "data",
+            "uuid": "911e5307-2efa-4576-b981-c437cd69839f",
+            "version": [1, 0, 0]
+        }
+      ],
+    "dependencies": [
+      {
+       "uuid":"acea8903-ca11-457c-891f-9ccc8939d930",
+        "version":[1,0,0]
+      }
+   ]
+  }

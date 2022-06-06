@@ -1,0 +1,11 @@
+{
+    "format_version": "1.16.0",
+      "helloworld:canvasblock": {
+        "textures": {
+            "up": "canvasblock",
+            "down": "canvasblock",
+            "side": "canvasblock"
+            },
+        "sound":"dirt"
+        }
+    }

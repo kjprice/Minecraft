@@ -1,0 +1,591 @@
+{
+  "format_version": "1.16.0",
+  "helloworld:canvasblock": {
+    "textures": {
+      "up": "canvasblock",
+      "down": "canvasblock",
+      "side": "canvasblock"
+    },
+    "sound": "dirt"
+  },
+  "01babygabegirafe:01babygabegirafe_collage0x0": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage0x0"
+  },
+  "01babygabegirafe:01babygabegirafe_collage0x1": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage0x1"
+  },
+  "01babygabegirafe:01babygabegirafe_collage0x2": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage0x2"
+  },
+  "01babygabegirafe:01babygabegirafe_collage0x3": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage0x3"
+  },
+  "01babygabegirafe:01babygabegirafe_collage1x0": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage1x0"
+  },
+  "01babygabegirafe:01babygabegirafe_collage1x1": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage1x1"
+  },
+  "01babygabegirafe:01babygabegirafe_collage1x2": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage1x2"
+  },
+  "01babygabegirafe:01babygabegirafe_collage1x3": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage1x3"
+  },
+  "01babygabegirafe:01babygabegirafe_collage2x0": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage2x0"
+  },
+  "01babygabegirafe:01babygabegirafe_collage2x1": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage2x1"
+  },
+  "01babygabegirafe:01babygabegirafe_collage2x2": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage2x2"
+  },
+  "01babygabegirafe:01babygabegirafe_collage2x3": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage2x3"
+  },
+  "01babygabegirafe:01babygabegirafe_collage3x0": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage3x0"
+  },
+  "01babygabegirafe:01babygabegirafe_collage3x1": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage3x1"
+  },
+  "01babygabegirafe:01babygabegirafe_collage3x2": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage3x2"
+  },
+  "01babygabegirafe:01babygabegirafe_collage3x3": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage3x3"
+  },
+  "01babygabegirafe:01babygabegirafe_collage4x0": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage4x0"
+  },
+  "01babygabegirafe:01babygabegirafe_collage4x1": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage4x1"
+  },
+  "01babygabegirafe:01babygabegirafe_collage4x2": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage4x2"
+  },
+  "01babygabegirafe:01babygabegirafe_collage4x3": {
+    "sound": "dirt",
+    "textures": "01babygabegirafe_collage4x3"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage0x0": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage0x0"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage0x1": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage0x1"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage0x2": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage0x2"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage0x3": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage0x3"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage1x0": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage1x0"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage1x1": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage1x1"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage1x2": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage1x2"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage1x3": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage1x3"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage2x0": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage2x0"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage2x1": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage2x1"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage2x2": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage2x2"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage2x3": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage2x3"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage3x0": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage3x0"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage3x1": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage3x1"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage3x2": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage3x2"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage3x3": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage3x3"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage4x0": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage4x0"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage4x1": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage4x1"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage4x2": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage4x2"
+  },
+  "02gabewithevebaby:02gabewithevebaby_collage4x3": {
+    "sound": "dirt",
+    "textures": "02gabewithevebaby_collage4x3"
+  },
+  "03evebaby:03evebaby_collage0x0": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage0x0"
+  },
+  "03evebaby:03evebaby_collage0x1": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage0x1"
+  },
+  "03evebaby:03evebaby_collage0x2": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage0x2"
+  },
+  "03evebaby:03evebaby_collage0x3": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage0x3"
+  },
+  "03evebaby:03evebaby_collage1x0": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage1x0"
+  },
+  "03evebaby:03evebaby_collage1x1": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage1x1"
+  },
+  "03evebaby:03evebaby_collage1x2": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage1x2"
+  },
+  "03evebaby:03evebaby_collage1x3": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage1x3"
+  },
+  "03evebaby:03evebaby_collage2x0": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage2x0"
+  },
+  "03evebaby:03evebaby_collage2x1": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage2x1"
+  },
+  "03evebaby:03evebaby_collage2x2": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage2x2"
+  },
+  "03evebaby:03evebaby_collage2x3": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage2x3"
+  },
+  "03evebaby:03evebaby_collage3x0": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage3x0"
+  },
+  "03evebaby:03evebaby_collage3x1": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage3x1"
+  },
+  "03evebaby:03evebaby_collage3x2": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage3x2"
+  },
+  "03evebaby:03evebaby_collage3x3": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage3x3"
+  },
+  "03evebaby:03evebaby_collage4x0": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage4x0"
+  },
+  "03evebaby:03evebaby_collage4x1": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage4x1"
+  },
+  "03evebaby:03evebaby_collage4x2": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage4x2"
+  },
+  "03evebaby:03evebaby_collage4x3": {
+    "sound": "dirt",
+    "textures": "03evebaby_collage4x3"
+  },
+  "04eveberlin:04eveberlin_collage0x0": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage0x0"
+  },
+  "04eveberlin:04eveberlin_collage0x1": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage0x1"
+  },
+  "04eveberlin:04eveberlin_collage0x2": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage0x2"
+  },
+  "04eveberlin:04eveberlin_collage0x3": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage0x3"
+  },
+  "04eveberlin:04eveberlin_collage0x4": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage0x4"
+  },
+  "04eveberlin:04eveberlin_collage0x5": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage0x5"
+  },
+  "04eveberlin:04eveberlin_collage0x6": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage0x6"
+  },
+  "04eveberlin:04eveberlin_collage1x0": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage1x0"
+  },
+  "04eveberlin:04eveberlin_collage1x1": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage1x1"
+  },
+  "04eveberlin:04eveberlin_collage1x2": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage1x2"
+  },
+  "04eveberlin:04eveberlin_collage1x3": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage1x3"
+  },
+  "04eveberlin:04eveberlin_collage1x4": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage1x4"
+  },
+  "04eveberlin:04eveberlin_collage1x5": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage1x5"
+  },
+  "04eveberlin:04eveberlin_collage1x6": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage1x6"
+  },
+  "04eveberlin:04eveberlin_collage2x0": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage2x0"
+  },
+  "04eveberlin:04eveberlin_collage2x1": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage2x1"
+  },
+  "04eveberlin:04eveberlin_collage2x2": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage2x2"
+  },
+  "04eveberlin:04eveberlin_collage2x3": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage2x3"
+  },
+  "04eveberlin:04eveberlin_collage2x4": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage2x4"
+  },
+  "04eveberlin:04eveberlin_collage2x5": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage2x5"
+  },
+  "04eveberlin:04eveberlin_collage2x6": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage2x6"
+  },
+  "04eveberlin:04eveberlin_collage3x0": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage3x0"
+  },
+  "04eveberlin:04eveberlin_collage3x1": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage3x1"
+  },
+  "04eveberlin:04eveberlin_collage3x2": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage3x2"
+  },
+  "04eveberlin:04eveberlin_collage3x3": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage3x3"
+  },
+  "04eveberlin:04eveberlin_collage3x4": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage3x4"
+  },
+  "04eveberlin:04eveberlin_collage3x5": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage3x5"
+  },
+  "04eveberlin:04eveberlin_collage3x6": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage3x6"
+  },
+  "04eveberlin:04eveberlin_collage4x0": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage4x0"
+  },
+  "04eveberlin:04eveberlin_collage4x1": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage4x1"
+  },
+  "04eveberlin:04eveberlin_collage4x2": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage4x2"
+  },
+  "04eveberlin:04eveberlin_collage4x3": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage4x3"
+  },
+  "04eveberlin:04eveberlin_collage4x4": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage4x4"
+  },
+  "04eveberlin:04eveberlin_collage4x5": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage4x5"
+  },
+  "04eveberlin:04eveberlin_collage4x6": {
+    "sound": "dirt",
+    "textures": "04eveberlin_collage4x6"
+  },
+  "05berlin1:05berlin1_collage0x0": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x0"
+  },
+  "05berlin1:05berlin1_collage0x1": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x1"
+  },
+  "05berlin1:05berlin1_collage0x2": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x2"
+  },
+  "05berlin1:05berlin1_collage0x3": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x3"
+  },
+  "05berlin1:05berlin1_collage0x4": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x4"
+  },
+  "05berlin1:05berlin1_collage0x5": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x5"
+  },
+  "05berlin1:05berlin1_collage0x6": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x6"
+  },
+  "05berlin1:05berlin1_collage0x7": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x7"
+  },
+  "05berlin1:05berlin1_collage0x8": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x8"
+  },
+  "05berlin1:05berlin1_collage0x9": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage0x9"
+  },
+  "05berlin1:05berlin1_collage1x0": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x0"
+  },
+  "05berlin1:05berlin1_collage1x1": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x1"
+  },
+  "05berlin1:05berlin1_collage1x2": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x2"
+  },
+  "05berlin1:05berlin1_collage1x3": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x3"
+  },
+  "05berlin1:05berlin1_collage1x4": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x4"
+  },
+  "05berlin1:05berlin1_collage1x5": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x5"
+  },
+  "05berlin1:05berlin1_collage1x6": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x6"
+  },
+  "05berlin1:05berlin1_collage1x7": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x7"
+  },
+  "05berlin1:05berlin1_collage1x8": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x8"
+  },
+  "05berlin1:05berlin1_collage1x9": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage1x9"
+  },
+  "05berlin1:05berlin1_collage2x0": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x0"
+  },
+  "05berlin1:05berlin1_collage2x1": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x1"
+  },
+  "05berlin1:05berlin1_collage2x2": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x2"
+  },
+  "05berlin1:05berlin1_collage2x3": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x3"
+  },
+  "05berlin1:05berlin1_collage2x4": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x4"
+  },
+  "05berlin1:05berlin1_collage2x5": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x5"
+  },
+  "05berlin1:05berlin1_collage2x6": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x6"
+  },
+  "05berlin1:05berlin1_collage2x7": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x7"
+  },
+  "05berlin1:05berlin1_collage2x8": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x8"
+  },
+  "05berlin1:05berlin1_collage2x9": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage2x9"
+  },
+  "05berlin1:05berlin1_collage3x0": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x0"
+  },
+  "05berlin1:05berlin1_collage3x1": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x1"
+  },
+  "05berlin1:05berlin1_collage3x2": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x2"
+  },
+  "05berlin1:05berlin1_collage3x3": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x3"
+  },
+  "05berlin1:05berlin1_collage3x4": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x4"
+  },
+  "05berlin1:05berlin1_collage3x5": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x5"
+  },
+  "05berlin1:05berlin1_collage3x6": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x6"
+  },
+  "05berlin1:05berlin1_collage3x7": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x7"
+  },
+  "05berlin1:05berlin1_collage3x8": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x8"
+  },
+  "05berlin1:05berlin1_collage3x9": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage3x9"
+  },
+  "05berlin1:05berlin1_collage4x0": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x0"
+  },
+  "05berlin1:05berlin1_collage4x1": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x1"
+  },
+  "05berlin1:05berlin1_collage4x2": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x2"
+  },
+  "05berlin1:05berlin1_collage4x3": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x3"
+  },
+  "05berlin1:05berlin1_collage4x4": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x4"
+  },
+  "05berlin1:05berlin1_collage4x5": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x5"
+  },
+  "05berlin1:05berlin1_collage4x6": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x6"
+  },
+  "05berlin1:05berlin1_collage4x7": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x7"
+  },
+  "05berlin1:05berlin1_collage4x8": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x8"
+  },
+  "05berlin1:05berlin1_collage4x9": {
+    "sound": "dirt",
+    "textures": "05berlin1_collage4x9"
+  }
+}

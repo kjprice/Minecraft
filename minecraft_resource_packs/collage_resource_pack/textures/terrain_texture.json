@@ -1,0 +1,449 @@
+{
+  "resource_pack_name": "My_BEHAVIOR_Pack",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "canvasblock": {
+      "textures": "textures/blocks/canvasblock"
+    },
+    "log_oak_top": {
+      "textures": "textures/blocks/log_oak_top"
+    },
+    "01babygabegirafe_collage0x0": {
+      "textures": "textures/blocks/01babygabegirafe_collage0x0.png"
+    },
+    "01babygabegirafe_collage0x1": {
+      "textures": "textures/blocks/01babygabegirafe_collage0x1.png"
+    },
+    "01babygabegirafe_collage0x2": {
+      "textures": "textures/blocks/01babygabegirafe_collage0x2.png"
+    },
+    "01babygabegirafe_collage0x3": {
+      "textures": "textures/blocks/01babygabegirafe_collage0x3.png"
+    },
+    "01babygabegirafe_collage1x0": {
+      "textures": "textures/blocks/01babygabegirafe_collage1x0.png"
+    },
+    "01babygabegirafe_collage1x1": {
+      "textures": "textures/blocks/01babygabegirafe_collage1x1.png"
+    },
+    "01babygabegirafe_collage1x2": {
+      "textures": "textures/blocks/01babygabegirafe_collage1x2.png"
+    },
+    "01babygabegirafe_collage1x3": {
+      "textures": "textures/blocks/01babygabegirafe_collage1x3.png"
+    },
+    "01babygabegirafe_collage2x0": {
+      "textures": "textures/blocks/01babygabegirafe_collage2x0.png"
+    },
+    "01babygabegirafe_collage2x1": {
+      "textures": "textures/blocks/01babygabegirafe_collage2x1.png"
+    },
+    "01babygabegirafe_collage2x2": {
+      "textures": "textures/blocks/01babygabegirafe_collage2x2.png"
+    },
+    "01babygabegirafe_collage2x3": {
+      "textures": "textures/blocks/01babygabegirafe_collage2x3.png"
+    },
+    "01babygabegirafe_collage3x0": {
+      "textures": "textures/blocks/01babygabegirafe_collage3x0.png"
+    },
+    "01babygabegirafe_collage3x1": {
+      "textures": "textures/blocks/01babygabegirafe_collage3x1.png"
+    },
+    "01babygabegirafe_collage3x2": {
+      "textures": "textures/blocks/01babygabegirafe_collage3x2.png"
+    },
+    "01babygabegirafe_collage3x3": {
+      "textures": "textures/blocks/01babygabegirafe_collage3x3.png"
+    },
+    "01babygabegirafe_collage4x0": {
+      "textures": "textures/blocks/01babygabegirafe_collage4x0.png"
+    },
+    "01babygabegirafe_collage4x1": {
+      "textures": "textures/blocks/01babygabegirafe_collage4x1.png"
+    },
+    "01babygabegirafe_collage4x2": {
+      "textures": "textures/blocks/01babygabegirafe_collage4x2.png"
+    },
+    "01babygabegirafe_collage4x3": {
+      "textures": "textures/blocks/01babygabegirafe_collage4x3.png"
+    },
+    "02gabewithevebaby_collage0x0": {
+      "textures": "textures/blocks/02gabewithevebaby_collage0x0.png"
+    },
+    "02gabewithevebaby_collage0x1": {
+      "textures": "textures/blocks/02gabewithevebaby_collage0x1.png"
+    },
+    "02gabewithevebaby_collage0x2": {
+      "textures": "textures/blocks/02gabewithevebaby_collage0x2.png"
+    },
+    "02gabewithevebaby_collage0x3": {
+      "textures": "textures/blocks/02gabewithevebaby_collage0x3.png"
+    },
+    "02gabewithevebaby_collage1x0": {
+      "textures": "textures/blocks/02gabewithevebaby_collage1x0.png"
+    },
+    "02gabewithevebaby_collage1x1": {
+      "textures": "textures/blocks/02gabewithevebaby_collage1x1.png"
+    },
+    "02gabewithevebaby_collage1x2": {
+      "textures": "textures/blocks/02gabewithevebaby_collage1x2.png"
+    },
+    "02gabewithevebaby_collage1x3": {
+      "textures": "textures/blocks/02gabewithevebaby_collage1x3.png"
+    },
+    "02gabewithevebaby_collage2x0": {
+      "textures": "textures/blocks/02gabewithevebaby_collage2x0.png"
+    },
+    "02gabewithevebaby_collage2x1": {
+      "textures": "textures/blocks/02gabewithevebaby_collage2x1.png"
+    },
+    "02gabewithevebaby_collage2x2": {
+      "textures": "textures/blocks/02gabewithevebaby_collage2x2.png"
+    },
+    "02gabewithevebaby_collage2x3": {
+      "textures": "textures/blocks/02gabewithevebaby_collage2x3.png"
+    },
+    "02gabewithevebaby_collage3x0": {
+      "textures": "textures/blocks/02gabewithevebaby_collage3x0.png"
+    },
+    "02gabewithevebaby_collage3x1": {
+      "textures": "textures/blocks/02gabewithevebaby_collage3x1.png"
+    },
+    "02gabewithevebaby_collage3x2": {
+      "textures": "textures/blocks/02gabewithevebaby_collage3x2.png"
+    },
+    "02gabewithevebaby_collage3x3": {
+      "textures": "textures/blocks/02gabewithevebaby_collage3x3.png"
+    },
+    "02gabewithevebaby_collage4x0": {
+      "textures": "textures/blocks/02gabewithevebaby_collage4x0.png"
+    },
+    "02gabewithevebaby_collage4x1": {
+      "textures": "textures/blocks/02gabewithevebaby_collage4x1.png"
+    },
+    "02gabewithevebaby_collage4x2": {
+      "textures": "textures/blocks/02gabewithevebaby_collage4x2.png"
+    },
+    "02gabewithevebaby_collage4x3": {
+      "textures": "textures/blocks/02gabewithevebaby_collage4x3.png"
+    },
+    "03evebaby_collage0x0": {
+      "textures": "textures/blocks/03evebaby_collage0x0.png"
+    },
+    "03evebaby_collage0x1": {
+      "textures": "textures/blocks/03evebaby_collage0x1.png"
+    },
+    "03evebaby_collage0x2": {
+      "textures": "textures/blocks/03evebaby_collage0x2.png"
+    },
+    "03evebaby_collage0x3": {
+      "textures": "textures/blocks/03evebaby_collage0x3.png"
+    },
+    "03evebaby_collage1x0": {
+      "textures": "textures/blocks/03evebaby_collage1x0.png"
+    },
+    "03evebaby_collage1x1": {
+      "textures": "textures/blocks/03evebaby_collage1x1.png"
+    },
+    "03evebaby_collage1x2": {
+      "textures": "textures/blocks/03evebaby_collage1x2.png"
+    },
+    "03evebaby_collage1x3": {
+      "textures": "textures/blocks/03evebaby_collage1x3.png"
+    },
+    "03evebaby_collage2x0": {
+      "textures": "textures/blocks/03evebaby_collage2x0.png"
+    },
+    "03evebaby_collage2x1": {
+      "textures": "textures/blocks/03evebaby_collage2x1.png"
+    },
+    "03evebaby_collage2x2": {
+      "textures": "textures/blocks/03evebaby_collage2x2.png"
+    },
+    "03evebaby_collage2x3": {
+      "textures": "textures/blocks/03evebaby_collage2x3.png"
+    },
+    "03evebaby_collage3x0": {
+      "textures": "textures/blocks/03evebaby_collage3x0.png"
+    },
+    "03evebaby_collage3x1": {
+      "textures": "textures/blocks/03evebaby_collage3x1.png"
+    },
+    "03evebaby_collage3x2": {
+      "textures": "textures/blocks/03evebaby_collage3x2.png"
+    },
+    "03evebaby_collage3x3": {
+      "textures": "textures/blocks/03evebaby_collage3x3.png"
+    },
+    "03evebaby_collage4x0": {
+      "textures": "textures/blocks/03evebaby_collage4x0.png"
+    },
+    "03evebaby_collage4x1": {
+      "textures": "textures/blocks/03evebaby_collage4x1.png"
+    },
+    "03evebaby_collage4x2": {
+      "textures": "textures/blocks/03evebaby_collage4x2.png"
+    },
+    "03evebaby_collage4x3": {
+      "textures": "textures/blocks/03evebaby_collage4x3.png"
+    },
+    "04eveberlin_collage0x0": {
+      "textures": "textures/blocks/04eveberlin_collage0x0.png"
+    },
+    "04eveberlin_collage0x1": {
+      "textures": "textures/blocks/04eveberlin_collage0x1.png"
+    },
+    "04eveberlin_collage0x2": {
+      "textures": "textures/blocks/04eveberlin_collage0x2.png"
+    },
+    "04eveberlin_collage0x3": {
+      "textures": "textures/blocks/04eveberlin_collage0x3.png"
+    },
+    "04eveberlin_collage0x4": {
+      "textures": "textures/blocks/04eveberlin_collage0x4.png"
+    },
+    "04eveberlin_collage0x5": {
+      "textures": "textures/blocks/04eveberlin_collage0x5.png"
+    },
+    "04eveberlin_collage0x6": {
+      "textures": "textures/blocks/04eveberlin_collage0x6.png"
+    },
+    "04eveberlin_collage1x0": {
+      "textures": "textures/blocks/04eveberlin_collage1x0.png"
+    },
+    "04eveberlin_collage1x1": {
+      "textures": "textures/blocks/04eveberlin_collage1x1.png"
+    },
+    "04eveberlin_collage1x2": {
+      "textures": "textures/blocks/04eveberlin_collage1x2.png"
+    },
+    "04eveberlin_collage1x3": {
+      "textures": "textures/blocks/04eveberlin_collage1x3.png"
+    },
+    "04eveberlin_collage1x4": {
+      "textures": "textures/blocks/04eveberlin_collage1x4.png"
+    },
+    "04eveberlin_collage1x5": {
+      "textures": "textures/blocks/04eveberlin_collage1x5.png"
+    },
+    "04eveberlin_collage1x6": {
+      "textures": "textures/blocks/04eveberlin_collage1x6.png"
+    },
+    "04eveberlin_collage2x0": {
+      "textures": "textures/blocks/04eveberlin_collage2x0.png"
+    },
+    "04eveberlin_collage2x1": {
+      "textures": "textures/blocks/04eveberlin_collage2x1.png"
+    },
+    "04eveberlin_collage2x2": {
+      "textures": "textures/blocks/04eveberlin_collage2x2.png"
+    },
+    "04eveberlin_collage2x3": {
+      "textures": "textures/blocks/04eveberlin_collage2x3.png"
+    },
+    "04eveberlin_collage2x4": {
+      "textures": "textures/blocks/04eveberlin_collage2x4.png"
+    },
+    "04eveberlin_collage2x5": {
+      "textures": "textures/blocks/04eveberlin_collage2x5.png"
+    },
+    "04eveberlin_collage2x6": {
+      "textures": "textures/blocks/04eveberlin_collage2x6.png"
+    },
+    "04eveberlin_collage3x0": {
+      "textures": "textures/blocks/04eveberlin_collage3x0.png"
+    },
+    "04eveberlin_collage3x1": {
+      "textures": "textures/blocks/04eveberlin_collage3x1.png"
+    },
+    "04eveberlin_collage3x2": {
+      "textures": "textures/blocks/04eveberlin_collage3x2.png"
+    },
+    "04eveberlin_collage3x3": {
+      "textures": "textures/blocks/04eveberlin_collage3x3.png"
+    },
+    "04eveberlin_collage3x4": {
+      "textures": "textures/blocks/04eveberlin_collage3x4.png"
+    },
+    "04eveberlin_collage3x5": {
+      "textures": "textures/blocks/04eveberlin_collage3x5.png"
+    },
+    "04eveberlin_collage3x6": {
+      "textures": "textures/blocks/04eveberlin_collage3x6.png"
+    },
+    "04eveberlin_collage4x0": {
+      "textures": "textures/blocks/04eveberlin_collage4x0.png"
+    },
+    "04eveberlin_collage4x1": {
+      "textures": "textures/blocks/04eveberlin_collage4x1.png"
+    },
+    "04eveberlin_collage4x2": {
+      "textures": "textures/blocks/04eveberlin_collage4x2.png"
+    },
+    "04eveberlin_collage4x3": {
+      "textures": "textures/blocks/04eveberlin_collage4x3.png"
+    },
+    "04eveberlin_collage4x4": {
+      "textures": "textures/blocks/04eveberlin_collage4x4.png"
+    },
+    "04eveberlin_collage4x5": {
+      "textures": "textures/blocks/04eveberlin_collage4x5.png"
+    },
+    "04eveberlin_collage4x6": {
+      "textures": "textures/blocks/04eveberlin_collage4x6.png"
+    },
+    "05berlin1_collage0x0": {
+      "textures": "textures/blocks/05berlin1_collage0x0.png"
+    },
+    "05berlin1_collage0x1": {
+      "textures": "textures/blocks/05berlin1_collage0x1.png"
+    },
+    "05berlin1_collage0x2": {
+      "textures": "textures/blocks/05berlin1_collage0x2.png"
+    },
+    "05berlin1_collage0x3": {
+      "textures": "textures/blocks/05berlin1_collage0x3.png"
+    },
+    "05berlin1_collage0x4": {
+      "textures": "textures/blocks/05berlin1_collage0x4.png"
+    },
+    "05berlin1_collage0x5": {
+      "textures": "textures/blocks/05berlin1_collage0x5.png"
+    },
+    "05berlin1_collage0x6": {
+      "textures": "textures/blocks/05berlin1_collage0x6.png"
+    },
+    "05berlin1_collage0x7": {
+      "textures": "textures/blocks/05berlin1_collage0x7.png"
+    },
+    "05berlin1_collage0x8": {
+      "textures": "textures/blocks/05berlin1_collage0x8.png"
+    },
+    "05berlin1_collage0x9": {
+      "textures": "textures/blocks/05berlin1_collage0x9.png"
+    },
+    "05berlin1_collage1x0": {
+      "textures": "textures/blocks/05berlin1_collage1x0.png"
+    },
+    "05berlin1_collage1x1": {
+      "textures": "textures/blocks/05berlin1_collage1x1.png"
+    },
+    "05berlin1_collage1x2": {
+      "textures": "textures/blocks/05berlin1_collage1x2.png"
+    },
+    "05berlin1_collage1x3": {
+      "textures": "textures/blocks/05berlin1_collage1x3.png"
+    },
+    "05berlin1_collage1x4": {
+      "textures": "textures/blocks/05berlin1_collage1x4.png"
+    },
+    "05berlin1_collage1x5": {
+      "textures": "textures/blocks/05berlin1_collage1x5.png"
+    },
+    "05berlin1_collage1x6": {
+      "textures": "textures/blocks/05berlin1_collage1x6.png"
+    },
+    "05berlin1_collage1x7": {
+      "textures": "textures/blocks/05berlin1_collage1x7.png"
+    },
+    "05berlin1_collage1x8": {
+      "textures": "textures/blocks/05berlin1_collage1x8.png"
+    },
+    "05berlin1_collage1x9": {
+      "textures": "textures/blocks/05berlin1_collage1x9.png"
+    },
+    "05berlin1_collage2x0": {
+      "textures": "textures/blocks/05berlin1_collage2x0.png"
+    },
+    "05berlin1_collage2x1": {
+      "textures": "textures/blocks/05berlin1_collage2x1.png"
+    },
+    "05berlin1_collage2x2": {
+      "textures": "textures/blocks/05berlin1_collage2x2.png"
+    },
+    "05berlin1_collage2x3": {
+      "textures": "textures/blocks/05berlin1_collage2x3.png"
+    },
+    "05berlin1_collage2x4": {
+      "textures": "textures/blocks/05berlin1_collage2x4.png"
+    },
+    "05berlin1_collage2x5": {
+      "textures": "textures/blocks/05berlin1_collage2x5.png"
+    },
+    "05berlin1_collage2x6": {
+      "textures": "textures/blocks/05berlin1_collage2x6.png"
+    },
+    "05berlin1_collage2x7": {
+      "textures": "textures/blocks/05berlin1_collage2x7.png"
+    },
+    "05berlin1_collage2x8": {
+      "textures": "textures/blocks/05berlin1_collage2x8.png"
+    },
+    "05berlin1_collage2x9": {
+      "textures": "textures/blocks/05berlin1_collage2x9.png"
+    },
+    "05berlin1_collage3x0": {
+      "textures": "textures/blocks/05berlin1_collage3x0.png"
+    },
+    "05berlin1_collage3x1": {
+      "textures": "textures/blocks/05berlin1_collage3x1.png"
+    },
+    "05berlin1_collage3x2": {
+      "textures": "textures/blocks/05berlin1_collage3x2.png"
+    },
+    "05berlin1_collage3x3": {
+      "textures": "textures/blocks/05berlin1_collage3x3.png"
+    },
+    "05berlin1_collage3x4": {
+      "textures": "textures/blocks/05berlin1_collage3x4.png"
+    },
+    "05berlin1_collage3x5": {
+      "textures": "textures/blocks/05berlin1_collage3x5.png"
+    },
+    "05berlin1_collage3x6": {
+      "textures": "textures/blocks/05berlin1_collage3x6.png"
+    },
+    "05berlin1_collage3x7": {
+      "textures": "textures/blocks/05berlin1_collage3x7.png"
+    },
+    "05berlin1_collage3x8": {
+      "textures": "textures/blocks/05berlin1_collage3x8.png"
+    },
+    "05berlin1_collage3x9": {
+      "textures": "textures/blocks/05berlin1_collage3x9.png"
+    },
+    "05berlin1_collage4x0": {
+      "textures": "textures/blocks/05berlin1_collage4x0.png"
+    },
+    "05berlin1_collage4x1": {
+      "textures": "textures/blocks/05berlin1_collage4x1.png"
+    },
+    "05berlin1_collage4x2": {
+      "textures": "textures/blocks/05berlin1_collage4x2.png"
+    },
+    "05berlin1_collage4x3": {
+      "textures": "textures/blocks/05berlin1_collage4x3.png"
+    },
+    "05berlin1_collage4x4": {
+      "textures": "textures/blocks/05berlin1_collage4x4.png"
+    },
+    "05berlin1_collage4x5": {
+      "textures": "textures/blocks/05berlin1_collage4x5.png"
+    },
+    "05berlin1_collage4x6": {
+      "textures": "textures/blocks/05berlin1_collage4x6.png"
+    },
+    "05berlin1_collage4x7": {
+      "textures": "textures/blocks/05berlin1_collage4x7.png"
+    },
+    "05berlin1_collage4x8": {
+      "textures": "textures/blocks/05berlin1_collage4x8.png"
+    },
+    "05berlin1_collage4x9": {
+      "textures": "textures/blocks/05berlin1_collage4x9.png"
+    }
+  }
+}
