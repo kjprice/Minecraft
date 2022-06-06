@@ -1,0 +1,114 @@
+import os
+
+def create_template_filepath(structure_name: str):
+    filename = '{}_template.mcstructure'.format(structure_name)
+    return os.path.join('minecraft_structures', filename)
+
+def load_template(name: str):
+    with open(create_template_filepath(name), 'rb') as f:
+        return f.read()
+
+# TODO: decouple from minecraft_function.py
+BEHAVIOR_PACK_ROOT_DIR = 'minecraft_behavior_packs'
+behavior_pack_dir = os.path.join(BEHAVIOR_PACK_ROOT_DIR, 'first_behavior_pack')
+structure_dir = os.path.join(behavior_pack_dir, 'structures')
+
+# TODO: Allow user to specify a behavior pack to save to
+
+def save_structure(name: str, structure_text: str):
+    filename = '{}.mcstructure'.format(name)
+    filepath = os.path.join(structure_dir, filename)
+    with open(filepath, 'wb') as f:
+        return f.write(structure_text)
+
+class MinecraftCommandBlockStructure():
+    # Globals
+    TEMPLATE_COMMAND = 'say hi'
+    STRUCTURE_TAGS = [TEMPLATE_COMMAND]
+
+    # User provided
+    name = None
+
+    # For structure
+    structure_raw = None
+    structure_array = None
+    structure_tag_positions = {}
+    def __init__(self, name: str, cmd: str) -> None:
+        self.name = name
+        self.structure_raw = self.load()
+
+        self.create_structure_array()
+        self.implode_structure_array()
+        self.find_structure_tags()
+
+        self.set_structure_command(cmd)
+        self.save()
+    
+    def get_command_for_function(self, x = 0, y = 0, z = 0):
+        return 'structure load {} ~{} ~{} ~{}'.format(self.name, x, y, z)
+
+    def create_structure_array(self):
+        structure_bytes = []
+        # Turns bytes into characters when could be text
+        for s in self.structure_raw:
+            if s >= 32 and s <= 122:
+                s = chr(s)
+            structure_bytes.append(s)
+        
+        # Groups text together into words
+        structure_bytes_and_words = []
+        current_word = ""
+        for s in structure_bytes:
+            if type(s) is str:
+                current_word += s
+            else:
+                if current_word != "":
+                    structure_bytes_and_words.append(current_word)
+                    current_word = ""
+                structure_bytes_and_words.append(s)
+        if current_word:
+            structure_bytes_and_words.append(s)
+
+        self.structure_array = structure_bytes_and_words
+
+    def find_structure_tags(self):
+        # Sets the position of found tag names
+        for i, s in enumerate(self.structure_array):
+            if s in self.STRUCTURE_TAGS:
+                self.structure_tag_positions[s] = i
+        
+
+    def implode_structure_array(self):
+        # Takes the array structure, turns all words into bytes, returns just bytes
+        output = []
+        for s in self.structure_array:
+            if type(s) == int:
+                output.append(s)
+            else:
+                for c in s:
+                    output.append(ord(c))
+        return bytearray(output)
+
+    def load(self):
+       return load_template("command_block")
+    
+    def replace_text(self, from_text, to_text):
+        self.structure_raw = self.structure_raw.replace(from_text, to_text)
+    
+    def set_structure_tag(self, tag_name, value):
+        tag_position = self.structure_tag_positions[tag_name]
+        self.structure_array[tag_position] = value
+
+        tag_position_text_length = tag_position - 2
+        self.structure_array[tag_position_text_length] = len(value)
+        # print(self.structure_array[130:145])
+
+    def set_structure_command(self, command: str):
+        self.set_structure_tag(self.TEMPLATE_COMMAND, command)
+        pass
+
+    def save(self):
+        save_structure(self.name, self.implode_structure_array())
+
+a = MinecraftCommandBlockStructure("give_dirt", "give @p command_block")
+print(a.get_command_for_function())
