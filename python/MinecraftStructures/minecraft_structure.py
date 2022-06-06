@@ -1,5 +1,7 @@
 import os
 
+from ..common.tools import ensure_directory_exists
+
 def create_template_filepath(structure_name: str):
     filename = '{}_template.mcstructure'.format(structure_name)
     return os.path.join('minecraft_structures', filename)
@@ -10,16 +12,6 @@ def load_template(name: str):
 
 # TODO: decouple from minecraft_function.py
 BEHAVIOR_PACK_ROOT_DIR = 'minecraft_behavior_packs'
-behavior_pack_dir = os.path.join(BEHAVIOR_PACK_ROOT_DIR, 'first_behavior_pack')
-structure_dir = os.path.join(behavior_pack_dir, 'structures')
-
-# TODO: Allow user to specify a behavior pack to save to
-
-def save_structure(name: str, structure_text: str):
-    filename = '{}.mcstructure'.format(name)
-    filepath = os.path.join(structure_dir, filename)
-    with open(filepath, 'wb') as f:
-        return f.write(structure_text)
 
 class MinecraftCommandBlockStructure():
     # Globals
@@ -29,14 +21,18 @@ class MinecraftCommandBlockStructure():
 
     # User provided
     name = None
+    behavior_pack_dir = os.path.join(BEHAVIOR_PACK_ROOT_DIR, 'first_behavior_pack')
 
     # For structure
     structure_raw = None
     structure_array = None
     structure_tag_positions = {}
-    def __init__(self, name: str, cmd: str, auto_run=False) -> None:
+    def __init__(self, name: str, cmd: str, auto_run=False, behavior_pack = None) -> None:
         self.name = name
         self.structure_raw = self.load()
+        if behavior_pack is not None:
+            self.behavior_pack_dir = behavior_pack.filepath
+
 
         self.create_structure_array()
         self.implode_structure_array()
@@ -44,8 +40,19 @@ class MinecraftCommandBlockStructure():
 
         self.set_structure_command(cmd)
         self.set_structure_auto_run(auto_run)
-        self.save()
+        self.save_structure()
     
+    def save_structure(self):
+        name = self.name
+        structure_text = self.implode_structure_array()
+        structure_dir = os.path.join(self.behavior_pack_dir, 'structures')
+        ensure_directory_exists(structure_dir)
+        filename = '{}.mcstructure'.format(name)
+        filepath = os.path.join(structure_dir, filename)
+        with open(filepath, 'wb') as f:
+            return f.write(structure_text)
+
+
     def save_structure_array(self):
         text_list = []
         for s in self.structure_array:
@@ -124,9 +131,6 @@ class MinecraftCommandBlockStructure():
     def set_structure_auto_run(self, auto_run):
         tag_position = self.structure_tag_positions[self.TEMPLATE_AUTO]
         self.structure_array[tag_position + 1] = 1 if auto_run else 0
-
-    def save(self):
-        save_structure(self.name, self.implode_structure_array())
 
 a = MinecraftCommandBlockStructure("give_dirt", "give @p command_block", True)
 # print(a.get_command_for_function())

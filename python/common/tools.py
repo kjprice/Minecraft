@@ -1,7 +1,12 @@
+import os
 import unittest
 
 def format_to_unix_path(path: str):
     return path.replace('\\', '/')
+
+def ensure_directory_exists(path: str):
+    if not os.path.exists(path):
+        os.makedirs(path)
 
 class CommonToolsTest(unittest.TestCase):
     def test_format_to_unix_path_empty(self):
