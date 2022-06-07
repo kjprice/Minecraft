@@ -41,8 +41,26 @@ class EpicTrain(MinecraftFunction):
         
         x, y, z = self.track_position
         self.run(set_track(x=x, y=y, z=z))
+    
+    def go_with_incline(self, direction: DIRECTIONS, distance: int, inclineDirection):
+        if not inclineDirection in [-1, 0, 1]:
+            raise ValueError("Incline can only be magnitutde of 1, cannot accept {}".format(inclineDirection))
+        if inclineDirection == 0:
+            self.go(direction, distance)
+            return
+        
+        if direction is not self.direction:
+            raise Exception('Cannot change directions and change incline at the same time')
 
-    def go(self, direction: DIRECTIONS, distance = 0):
+        for d in range(distance):
+            self.go(direction, 1)
+            if d != distance - 1:
+                x, y, z = self.track_position
+                self.track_position = [
+                    x, y + inclineDirection, z
+                ]
+
+    def go(self, direction: DIRECTIONS, distance: int):
         x_start, y, z_start = self.track_position
         x_distance, z_distance = self.get_x_z_distance(direction, distance)
 
@@ -56,14 +74,14 @@ class EpicTrain(MinecraftFunction):
         ]
         self.direction = direction
 
-    def goNorth(self, distance = 0):
-        self.go(DIRECTIONS['NORTH'], distance)
-    def goEast(self, distance = 0):
-        self.go(DIRECTIONS['EAST'], distance)
-    def goSouth(self, distance = 0):
-        self.go(DIRECTIONS['SOUTH'], distance)
-    def goWest(self, distance = 0):
-        self.go(DIRECTIONS['WEST'], distance)
+    def goNorth(self, distance = 0, incline = 0):
+        self.go_with_incline(DIRECTIONS['NORTH'], distance, incline)
+    def goEast(self, distance = 0, incline = 0):
+        self.go_with_incline(DIRECTIONS['EAST'], distance, incline)
+    def goSouth(self, distance, incline = 0):
+        self.go_with_incline(DIRECTIONS['SOUTH'], distance, incline)
+    def goWest(self, distance = 0, incline = 0):
+        self.go_with_incline(DIRECTIONS['WEST'], distance, incline)
     def build(self):
         self.run('# Building epic trains')
         
@@ -75,8 +93,10 @@ class EpicTrain(MinecraftFunction):
 
         self.run('ride @p summon_ride minecart')
         self.goEast(10)
+
         self.goSouth(10)
         self.goWest(5)
         self.goNorth(2)
+        self.goNorth(2, 1)
 
 

@@ -15,3 +15,7 @@ setblock ~10 64 ~10 rail
 fill ~5 63 ~10 ~5 63 ~8 redstone_block 
 fill ~5 64 ~10 ~5 64 ~8 golden_rail 
 setblock ~5 64 ~10 rail
+fill ~5 63 ~8 ~5 63 ~7 redstone_block 
+fill ~5 64 ~8 ~5 64 ~7 golden_rail 
+fill ~5 64 ~7 ~5 64 ~6 redstone_block 
+fill ~5 65 ~7 ~5 65 ~6 golden_rail 
