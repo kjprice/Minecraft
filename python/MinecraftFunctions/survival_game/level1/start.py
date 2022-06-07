@@ -1,4 +1,3 @@
-# from ..common.fill_command import fill_command
 from ...minecraft_function.minecraft_function import MinecraftFunction
 from ...common.fill_command import fill_command_from_sea_level
 from ...common.build_around_player import build_around_player
@@ -6,7 +5,6 @@ from ...common.reset_build import reset_build
 from ...common.build_tnt_trap import build_tnt_trap
 from ...common.tp_to_sealevel import tp_to_sealevel
 
-# Pyramid
 class SurvivalGameLevel1Start(MinecraftFunction):
     def __init__(self):
         super().__init__('survival_game/level1/start')
