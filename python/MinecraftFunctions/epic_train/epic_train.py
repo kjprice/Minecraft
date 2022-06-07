@@ -21,7 +21,7 @@ DIRECTIONS = {
     'WEST': [-1, 0],
 }
 
-DEFAULT_POSITION = [0, 0] # center - immutable
+DEFAULT_POSITION = [0, 0, 0] # center - immutable
 
 class EpicTrain(MinecraftFunction):
     track_position = None
@@ -39,18 +39,19 @@ class EpicTrain(MinecraftFunction):
         if new_direction == self.direction:
             return
         
-        x, z = self.track_position
-        self.run(set_track(x=x, z=z))
+        x, y, z = self.track_position
+        self.run(set_track(x=x, y=y, z=z))
 
     def go(self, direction: DIRECTIONS, distance = 0):
-        x_start, z_start = self.track_position
+        x_start, y, z_start = self.track_position
         x_distance, z_distance = self.get_x_z_distance(direction, distance)
 
-        self.run(create_track_path(y = 0, x_start = x_start, x_distance = x_distance, z_start = z_start, z_distance = z_distance))
+        self.run(create_track_path(y = y, x_start = x_start, x_distance = x_distance, z_start = z_start, z_distance = z_distance))
         self.set_turning_track(direction)
 
         self.track_position = [
             x_start + x_distance,
+            y,
             z_start + z_distance,
         ]
         self.direction = direction
