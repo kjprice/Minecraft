@@ -1,4 +1,5 @@
 from ..minecraft_function.minecraft_function import MinecraftFunction
+from ..common.build_around_player import build_around_player
 from ..common.fill_path import fill_path
 from ..conf import SEA_LEVEL
 # from ..common.reset_build import ResetBuild
@@ -12,6 +13,8 @@ def create_track_path(y = 0, x_start = 0, x_distance = 0, z_start = 0, z_distanc
 
     output.append(fill_path(y=y, x_start=x_start, x_distance=x_distance, z_start=z_start, z_distance=z_distance, block='redstone_block'))
     output.append(fill_path(y=y + 1, x_start=x_start, x_distance=x_distance, z_start=z_start, z_distance=z_distance, block='golden_rail'))
+    output.append(fill_path(y=y + 2, x_start=x_start, x_distance=x_distance, z_start=z_start, z_distance=z_distance, block='air'))
+    output.append(fill_path(y=y + 3, x_start=x_start, x_distance=x_distance, z_start=z_start, z_distance=z_distance, block='air'))
     return '\n'.join(output)
 
 DIRECTIONS = {
@@ -28,7 +31,7 @@ class EpicTrain(MinecraftFunction):
     direction = None
     def __init__(self):
         self.track_position = DEFAULT_POSITION
-        self.direction = [1, 0] # Facing East
+        self.direction = DIRECTIONS['EAST']
         super().__init__('epic_train')
     
     def get_x_z_distance(self, direction, distance):
@@ -106,13 +109,19 @@ class EpicTrain(MinecraftFunction):
         
         self.run('tp @p ~ ~ ~ facing ~5 ~ ~') # Facing east
         self.run('function reset_build')
+        self.run(build_around_player(10, y_distance=10, x_offset=20, block='stone'))
+        self.run(build_around_player(10, y_bottom=10, y_distance=10, x_offset=20, z_offset=-20, block='stone'))
         self.run('kill @e[type=minecart]')
 
         self.run('setblock ~-1 ~ ~ stone')
 
         self.run('ride @p summon_ride minecart')
         self.goEast(2)
-        self.goNorth(2)
+        self.goEast(20, 1)
+        self.goNorth(15)
+        self.goWest(1)
+        self.goWest(5, -1)
+        self.goNorth(5)
         self.goWest(1)
         self.goWest(2, 1)
 
