@@ -69,12 +69,11 @@ class EpicTrain(MinecraftFunction):
             raise Exception('Cannot change directions and change incline at the same time')
 
         for d in range(distance):
+            x, y, z = self.track_position
+            self.track_position = [
+                x, y + inclineDirection, z
+            ]
             self.go(direction, 1)
-            if d != distance - 1:
-                x, y, z = self.track_position
-                self.track_position = [
-                    x, y + inclineDirection, z
-                ]
 
     def go(self, direction: DIRECTIONS, distance: int):
         x_start, y, z_start = self.get_starting_position(direction)

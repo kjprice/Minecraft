@@ -16,7 +16,7 @@ fill ~0 63 ~-2 ~0 63 ~-2 redstone_block
 fill ~0 64 ~-2 ~0 64 ~-2 golden_rail 
 setblock ~1 64 ~-2 rail
 # West: 2
-fill ~-1 63 ~-2 ~-1 63 ~-2 redstone_block 
-fill ~-1 64 ~-2 ~-1 64 ~-2 golden_rail 
-fill ~-2 64 ~-2 ~-2 64 ~-2 redstone_block 
-fill ~-2 65 ~-2 ~-2 65 ~-2 golden_rail 
+fill ~-1 64 ~-2 ~-1 64 ~-2 redstone_block 
+fill ~-1 65 ~-2 ~-1 65 ~-2 golden_rail 
+fill ~-2 65 ~-2 ~-2 65 ~-2 redstone_block 
+fill ~-2 66 ~-2 ~-2 66 ~-2 golden_rail 
