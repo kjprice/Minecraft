@@ -57,7 +57,7 @@ class FamilyCollage():
         command_blocks = []
         for namespace in self.collage_namespaces:
             structure_name = 'collage_{}'.format(namespace)
-            command_fn = 'function {}'.format(namespace)
+            command_fn = 'execute @p ~ ~ ~ function {}'.format(namespace)
             command_block = MinecraftCommandBlockStructure(structure_name,
                 command_fn,
                 auto_run=True,
