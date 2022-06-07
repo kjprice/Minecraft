@@ -1,6 +1,11 @@
 from ..minecraft_function.minecraft_function import MinecraftFunction
 from ..common.fill_path import fill_path
+from ..conf import SEA_LEVEL
 # from ..common.reset_build import ResetBuild
+
+def set_track(x = 0, y = 0, z = 0):
+    y = SEA_LEVEL + y + 1
+    return 'setblock ~{} {} ~{} rail'.format(x, y, z)
 
 def create_track_path(y = 0, x_start = 0, x_distance = 0, z_start = 0, z_distance = 0):
     output = []
@@ -16,29 +21,40 @@ DIRECTIONS = {
     'WEST': [-1, 0],
 }
 
+DEFAULT_POSITION = [0, 0] # center - immutable
+
 class EpicTrain(MinecraftFunction):
     track_position = None
     direction = None
     def __init__(self):
-        self.track_position = [0, 0] # center
+        self.track_position = DEFAULT_POSITION
         self.direction = [1, 0] # Facing East
         super().__init__('epic_train')
     
-    def get_x_z_distance(self, distance):
-        return list(map(lambda direction: direction * distance, self.direction))
-    def go(self, direction: DIRECTIONS, distance = 0):
-        self.direction = direction
-        if distance == 0:
+    def get_x_z_distance(self, direction, distance):
+        return list(map(lambda d: d * distance, direction))
+    def set_turning_track(self, new_direction):
+        if self.track_position is DEFAULT_POSITION:
+            return
+        if new_direction == self.direction:
             return
         
+        x, z = self.track_position
+        self.run(set_track(x=x, z=z))
+
+    def go(self, direction: DIRECTIONS, distance = 0):
         x_start, z_start = self.track_position
-        x_distance, z_distance = self.get_x_z_distance(distance)
+        x_distance, z_distance = self.get_x_z_distance(direction, distance)
 
         self.run(create_track_path(y = 0, x_start = x_start, x_distance = x_distance, z_start = z_start, z_distance = z_distance))
+        self.set_turning_track(direction)
+
         self.track_position = [
             x_start + x_distance,
             z_start + z_distance,
         ]
+        self.direction = direction
+
     def goNorth(self, distance = 0):
         self.go(DIRECTIONS['NORTH'], distance)
     def goEast(self, distance = 0):
