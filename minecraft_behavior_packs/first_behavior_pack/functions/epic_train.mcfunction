@@ -4,18 +4,19 @@ function reset_build
 kill @e[type=minecart]
 setblock ~-1 ~ ~ stone
 ride @p summon_ride minecart
-fill ~0 63 ~0 ~10 63 ~0 redstone_block 
-fill ~0 64 ~0 ~10 64 ~0 golden_rail 
-fill ~10 63 ~0 ~10 63 ~10 redstone_block 
-fill ~10 64 ~0 ~10 64 ~10 golden_rail 
-setblock ~10 64 ~0 rail
-fill ~10 63 ~10 ~5 63 ~10 redstone_block 
-fill ~10 64 ~10 ~5 64 ~10 golden_rail 
-setblock ~10 64 ~10 rail
-fill ~5 63 ~10 ~5 63 ~8 redstone_block 
-fill ~5 64 ~10 ~5 64 ~8 golden_rail 
-setblock ~5 64 ~10 rail
-fill ~5 63 ~8 ~5 63 ~7 redstone_block 
-fill ~5 64 ~8 ~5 64 ~7 golden_rail 
-fill ~5 64 ~7 ~5 64 ~6 redstone_block 
-fill ~5 65 ~7 ~5 65 ~6 golden_rail 
+# East: 2
+fill ~0 63 ~0 ~1 63 ~0 redstone_block 
+fill ~0 64 ~0 ~1 64 ~0 golden_rail 
+# North: 2
+fill ~1 63 ~-1 ~1 63 ~-2 redstone_block 
+fill ~1 64 ~-1 ~1 64 ~-2 golden_rail 
+setblock ~1 64 ~0 rail
+# West: 1
+fill ~0 63 ~-2 ~0 63 ~-2 redstone_block 
+fill ~0 64 ~-2 ~0 64 ~-2 golden_rail 
+setblock ~1 64 ~-2 rail
+# West: 2
+fill ~-1 63 ~-2 ~-1 63 ~-2 redstone_block 
+fill ~-1 64 ~-2 ~-1 64 ~-2 golden_rail 
+fill ~-2 64 ~-2 ~-2 64 ~-2 redstone_block 
+fill ~-2 65 ~-2 ~-2 65 ~-2 golden_rail 
