@@ -5,6 +5,7 @@ from .powers.equip_netherite import EquipNetherite
 from .clear.replace_unwanted import ReplaceUnwanted
 from .epic_train.epic_train import EpicTrain
 from .epic_train.roller_coaster import RollerCoaster
+from .shapes.snow_ceiling import SnowCeiling
 
 def create_all():
     survivalGame = SurvivalGame()
@@ -15,6 +16,7 @@ def create_all():
     ReplaceUnwanted().run_all()
     EpicTrain().run_all()
     RollerCoaster().run_all()
+    SnowCeiling().run_all()
 
 if __name__ == '__main__':
     create_all()
