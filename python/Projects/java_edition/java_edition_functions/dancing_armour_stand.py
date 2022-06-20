@@ -10,7 +10,7 @@ ARMOUR_STAND_POSES = [
     '{ShowArms:0b}',
     '{ShowArms:1b}',
 ]
-DELAY_IN_SECONDS = 3
+DELAY_IN_SECONDS = 0.5
 
 def execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='='):
     # Use "at" instead of "as"...otherwise will execute relative to world spawn point (because of "schedule")

@@ -12,5 +12,5 @@ execute at @p[scores={dancing_armour_count=2}] run summon minecraft:armor_stand 
 scoreboard players add @a dancing_armour_count 1
 
 # Run again
-execute at @p[scores={dancing_armour_count=..3}] run schedule function misc:dancing_armour_stand_loop 3s
+execute at @p[scores={dancing_armour_count=..3}] run schedule function misc:dancing_armour_stand_loop 0.5s
 execute at @p[scores={dancing_armour_count=3}] run say All Done!
