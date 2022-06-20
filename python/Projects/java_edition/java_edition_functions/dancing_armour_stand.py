@@ -9,12 +9,20 @@ VERBOSE = False
 TAG_NAME = 'dancing_armour'
 
 # {ArmorItems:[{id:diamond_boots,Count:1},{id:diamond_leggings,Count:1},{id:diamond_chestplate,Count:1},{id:diamond_helmet,Count:1}]}
+# NBT_ARMOR_HELMET = '[{},{},{},{id:carved_pumpkin,Count:1}]'
 NBT_ARMOR_HELMET = '[{},{},{},{id:diamond_helmet,Count:1}]'
+
 # '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
 BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,ArmorItems:_ARMOR_,Tags:["_TAGS_"]}'.replace('_ARMOR_', NBT_ARMOR_HELMET).replace('_TAGS_', TAG_NAME)
 
 def create_pose(i:int):
-    return '{{Pose:{{LeftArm:[{}f,0f,0f]}}}}'.format(-i * 50)
+    left_arm = 'LeftArm:[{}f,0f,0f]'.format(-i * 50)
+    right_arm = 'RightArm:[{}f,0f,0f]'.format(i * 50)
+    poses = ','.join([
+        left_arm,
+        right_arm,
+    ])
+    return '{Pose:{_POSES_}}'.replace('_POSES_', poses)
 
 def create_armor_stand_data():
     data = []
