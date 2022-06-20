@@ -4,4 +4,7 @@ class ArmourStand(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
         super().__init__('armour_stand', data_pack=data_pack)
     def build(self) -> None:
-        self.run('summon minecraft:armor_stand ~ ~ ~ {NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}')
+        tag_name = 'test_armor_stand'
+        self.run('kill @e[type=minecraft:armor_stand]')
+        self.run(f'summon minecraft:armor_stand ~-2 ~ ~-2 {{NoBasePlate:1b,ShowArms:1b,Tags:["{tag_name}"]}}')
+        self.run(f'data get entity @e[tag={tag_name},limit=1]')

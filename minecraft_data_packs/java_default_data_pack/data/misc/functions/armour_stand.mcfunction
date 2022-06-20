@@ -1,1 +1,3 @@
-summon minecraft:armor_stand ~ ~ ~ {NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}
+kill @e[type=minecraft:armor_stand]
+summon minecraft:armor_stand ~-2 ~ ~-2 {NoBasePlate:1b,ShowArms:1b,Tags:["test_armor_stand"]}
+data get entity @e[tag=test_armor_stand,limit=1]
