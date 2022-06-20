@@ -4,14 +4,14 @@ SCOREBOARD_NAME = 'dancing_armour_count'
 SCOREBOARD_TARGETS = '@a'
 SCORBOARD_STARTING_SCORE = 0
 SCOREBOARD_SCORE_INCREMENT = 1
-DELAY_IN_SECONDS = 0.1
+DELAY_IN_TICKS = 1
 VERBOSE = False
 TAG_NAME = 'dancing_armour'
 
 # {ArmorItems:[{id:diamond_boots,Count:1},{id:diamond_leggings,Count:1},{id:diamond_chestplate,Count:1},{id:diamond_helmet,Count:1}]}
 NBT_ARMOR_HELMET = '[{},{},{},{id:diamond_helmet,Count:1}]'
 # '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
-BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,Pose:{_POSE_},ArmorItems:_ARMOR_,Tags:[_TAGS_]}'
+BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,Pose:{_POSE_},ArmorItems:_ARMOR_,Tags:["_TAGS_"]}'
 
 def create_pose(i:int):
     return 'LeftArm:[{}f,0f,0f]'.format(-i *20)
@@ -54,10 +54,11 @@ class DancingArmourStandLoop(MinecraftFunction):
                 self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
             cmd = 'summon minecraft:armor_stand ~ ~ ~-2 {}'.format(pose)
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, cmd))
-        #     # TODO: Optionally, would be fun to have armour stand face the nearest player
         #     # self.run('summon minecraft:armor_stand ~ ~ ~ {NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}')
             self.run('')
         
+        # TODO: Optionally, would be fun to have armour stand face the nearest player
+        # self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
         self.run('# Increment score')
         self.run('scoreboard players add {} {} {}'.format(
             SCOREBOARD_TARGETS,
@@ -67,7 +68,7 @@ class DancingArmourStandLoop(MinecraftFunction):
 
         self.run('')
         self.run('# Run again')
-        cmd = 'schedule function {} {}s'.format(self.name, DELAY_IN_SECONDS)
+        cmd = 'schedule function {} {}t'.format(self.name, DELAY_IN_TICKS)
         self.run(execute_if_score_less_than('@p', SCOREBOARD_NAME, poses_count, cmd))
         
         if VERBOSE:
