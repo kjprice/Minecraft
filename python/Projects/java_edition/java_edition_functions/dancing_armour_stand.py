@@ -7,6 +7,11 @@ SCOREBOARD_SCORE_INCREMENT = 1
 DELAY_IN_SECONDS = 0.5
 VERBOSE = False
 
+# {ArmorItems:[{id:diamond_boots,Count:1},{id:diamond_leggings,Count:1},{id:diamond_chestplate,Count:1},{id:diamond_helmet,Count:1}]}
+NBT_ARMOR_HELMET = '[{},{},{},{id:diamond_helmet,Count:1}]'
+# '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
+BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,Pose:{_POSE_},ArmorItems:_ARMOR_}'
+
 def create_pose(i:int):
     return 'LeftArm:[{}f,0f,0f]'.format(i *20)
 
@@ -14,9 +19,7 @@ def create_armor_stand_data():
     data = []
     for i in range(6):
         pose = create_pose(i)
-        # '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
-        base_data = '{NoBasePlate:1b,ShowArms:1b,Pose:{_POSE_}}'.replace('_POSE_', pose)
-        data.append(base_data)
+        data.append(BASE_DATA.replace('_POSE_', pose).replace('_ARMOR_', NBT_ARMOR_HELMET))
     return data
 
 
