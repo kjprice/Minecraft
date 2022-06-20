@@ -11,16 +11,16 @@ TAG_NAME = 'dancing_armour'
 # {ArmorItems:[{id:diamond_boots,Count:1},{id:diamond_leggings,Count:1},{id:diamond_chestplate,Count:1},{id:diamond_helmet,Count:1}]}
 NBT_ARMOR_HELMET = '[{},{},{},{id:diamond_helmet,Count:1}]'
 # '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
-BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,Pose:{_POSE_},ArmorItems:_ARMOR_,Tags:["_TAGS_"]}'
+BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,ArmorItems:_ARMOR_,Tags:["_TAGS_"]}'.replace('_ARMOR_', NBT_ARMOR_HELMET).replace('_TAGS_', TAG_NAME)
 
 def create_pose(i:int):
-    return 'LeftArm:[{}f,0f,0f]'.format(-i *20)
+    return '{{Pose:{{LeftArm:[{}f,0f,0f]}}}}'.format(-i * 50)
 
 def create_armor_stand_data():
     data = []
     for i in range(50):
         pose = create_pose(i)
-        data.append(BASE_DATA.replace('_POSE_', pose).replace('_ARMOR_', NBT_ARMOR_HELMET).replace('_TAGS_', TAG_NAME))
+        data.append(pose)
     return data
 
 
@@ -39,6 +39,8 @@ class DancingArmourStandStart(MinecraftFunction):
         super().__init__('dancing_armour_stand_start', data_pack=data_pack)
     def build(self):
         self.run('# TODO: Update')
+        self.run('kill @e[tag={}]'.format(TAG_NAME))
+        self.run('summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA))
         self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
         self.run('scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE))
 
@@ -48,13 +50,12 @@ class DancingArmourStandLoop(MinecraftFunction):
     def build(self):
         armour_stand_data = create_armor_stand_data()
         poses_count = len(armour_stand_data)
-        self.run('kill @e[type=minecraft:armor_stand]')
         for i, pose in enumerate(armour_stand_data):
             if VERBOSE:
                 self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
-            cmd = 'summon minecraft:armor_stand ~ ~ ~-2 {}'.format(pose)
+            cmd = 'data merge entity @e[tag={},limit=1] {}'.format(TAG_NAME, pose)
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, cmd))
-        #     # self.run('summon minecraft:armor_stand ~ ~ ~ {NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}')
+
             self.run('')
         
         # TODO: Optionally, would be fun to have armour stand face the nearest player
