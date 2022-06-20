@@ -29,7 +29,7 @@ class MinecraftCommandBlockStructure():
         self.name = name
         self.structure_raw = self.load()
         if behavior_pack is not None:
-            self.behavior_pack_dir = behavior_pack.filepath
+            self.behavior_pack_dir = behavior_pack.destination_filepath
 
 
         self.create_structure_array()
