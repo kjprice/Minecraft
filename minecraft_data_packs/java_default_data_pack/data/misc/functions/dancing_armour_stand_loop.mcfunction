@@ -49,8 +49,6 @@ execute at @p[scores={dancing_armour_count=47}] run data merge entity @e[tag=dan
 execute at @p[scores={dancing_armour_count=48}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{LeftArm:[-2400f,0f,0f]}}
 execute at @p[scores={dancing_armour_count=49}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{LeftArm:[-2450f,0f,0f]}}
 
-# Always face player
-execute at @e[tag=dancing_armour] run tp @e[tag=dancing_armour] ~ ~ ~ facing entity @p
 
 # Increment score
 scoreboard players add @a dancing_armour_count 1

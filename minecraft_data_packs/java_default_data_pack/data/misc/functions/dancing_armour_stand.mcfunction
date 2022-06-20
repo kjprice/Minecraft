@@ -1,2 +1,3 @@
 function misc:dancing_armour_stand_start
 function misc:dancing_armour_stand_loop
+function misc:dancing_armour_stand_face_player

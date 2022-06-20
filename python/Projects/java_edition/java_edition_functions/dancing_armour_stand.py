@@ -44,6 +44,14 @@ class DancingArmourStandStart(MinecraftFunction):
         self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
         self.run('scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE))
 
+class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
+    def __init__(self, data_pack=None) -> None:
+        super().__init__('dancing_armour_stand_face_player', data_pack=data_pack)
+    def build(self):
+        self.run('# Always face player')
+        self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
+        self.run('schedule function {} 1t'.format(self.name))
+
 class DancingArmourStandLoop(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
         super().__init__('dancing_armour_stand_loop', data_pack=data_pack)
@@ -59,9 +67,6 @@ class DancingArmourStandLoop(MinecraftFunction):
 
         self.run('')
         
-        self.run('# Always face player')
-        self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
-
         self.run('')
         self.run('# Increment score')
         self.run('scoreboard players add {} {} {}'.format(
@@ -85,10 +90,13 @@ class DancingArmourStand(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
         self.start_fn = DancingArmourStandStart(data_pack=data_pack)
         self.loop_fn = DancingArmourStandLoop(data_pack=data_pack)
+        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack=data_pack)
 
         self.start_fn.run_all()
         self.loop_fn.run_all()
+        self.face_player_fn.run_all()
         super().__init__('dancing_armour_stand', data_pack=data_pack)
     def build(self) -> None:
         self.run_function(self.start_fn)
         self.run_function(self.loop_fn)
+        self.run_function(self.face_player_fn)
