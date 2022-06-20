@@ -38,8 +38,8 @@ class DancingArmourStandLoop(MinecraftFunction):
         self.run('kill @e[type=minecraft:armor_stand]')
         for i, pose in enumerate(ARMOUR_STAND_POSES):
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
-            cmd = 'summon minecraft:armor_stand ~ ~ ~5 {}'.format(pose)
-            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i+1, cmd))
+            cmd = 'summon minecraft:armor_stand ~ ~ ~2 {}'.format(pose)
+            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, cmd))
         #     # TODO: Optionally, would be fun to have armour stand face the nearest player
         #     # self.run('summon minecraft:armor_stand ~ ~ ~ {NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}')
             self.run('')
