@@ -52,14 +52,17 @@ class DancingArmourStandLoop(MinecraftFunction):
         poses_count = len(armour_stand_data)
         for i, pose in enumerate(armour_stand_data):
             if VERBOSE:
+                self.run('')
                 self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
             cmd = 'data merge entity @e[tag={},limit=1] {}'.format(TAG_NAME, pose)
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, cmd))
 
-            self.run('')
+        self.run('')
         
-        # TODO: Optionally, would be fun to have armour stand face the nearest player
-        # self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
+        self.run('# Always face player')
+        self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
+
+        self.run('')
         self.run('# Increment score')
         self.run('scoreboard players add {} {} {}'.format(
             SCOREBOARD_TARGETS,
