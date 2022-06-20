@@ -18,7 +18,9 @@ BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,ArmorItems:_ARMOR_,Tags:["_TAGS_"]}'.re
 def create_pose(i:int):
     left_arm = 'LeftArm:[{}f,0f,0f]'.format(-i * 50)
     right_arm = 'RightArm:[{}f,0f,0f]'.format(i * 50)
+    head = 'Head:[0f,{}f,0f]'.format(i * 5)
     poses = ','.join([
+        head,
         left_arm,
         right_arm,
     ])
@@ -99,7 +101,7 @@ class DancingArmourStandLoop(MinecraftFunction):
         self.run('')
         self.run('# Start over when finished')
         self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, set_scoreboard()))
-
+        
         if VERBOSE:
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, 'say All Done!'))
         
