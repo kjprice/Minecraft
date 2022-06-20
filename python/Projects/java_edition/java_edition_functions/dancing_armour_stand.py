@@ -22,6 +22,10 @@ def create_pose(i:int):
         left_arm,
         right_arm,
     ])
+    # TODO(Try to move towards player)
+    # - This is an interesting idea: https://gaming.stackexchange.com/questions/339637/how-to-use-coordinate-systems-for-motion-nbt
+    # - Use Position, instead of Motion
+    # return '{Pose:{_POSES_},Motion:[1d, 0d, 0d]}'.replace('_POSES_', poses)
     return '{Pose:{_POSES_}}'.replace('_POSES_', poses)
 
 def create_armor_stand_data():
