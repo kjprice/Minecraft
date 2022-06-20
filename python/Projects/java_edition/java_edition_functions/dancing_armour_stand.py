@@ -5,6 +5,7 @@ SCOREBOARD_TARGETS = '@a'
 SCORBOARD_STARTING_SCORE = 0
 SCOREBOARD_SCORE_INCREMENT = 1
 DELAY_IN_SECONDS = 0.5
+VERBOSE = False
 
 def create_pose(i:int):
     return 'LeftArm:[{}f,0f,0f]'.format(i *20)
@@ -17,7 +18,6 @@ def create_armor_stand_data():
         base_data = '{NoBasePlate:1b,ShowArms:1b,Pose:{_POSE_}}'.replace('_POSE_', pose)
         data.append(base_data)
     return data
-print(create_armor_stand_data())
 
 
 def execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='='):
@@ -46,7 +46,8 @@ class DancingArmourStandLoop(MinecraftFunction):
         poses_count = len(armour_stand_data)
         self.run('kill @e[type=minecraft:armor_stand]')
         for i, pose in enumerate(armour_stand_data):
-            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
+            if VERBOSE:
+                self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
             cmd = 'summon minecraft:armor_stand ~ ~ ~2 {}'.format(pose)
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, cmd))
         #     # TODO: Optionally, would be fun to have armour stand face the nearest player
@@ -65,7 +66,8 @@ class DancingArmourStandLoop(MinecraftFunction):
         cmd = 'schedule function {} {}s'.format(self.name, DELAY_IN_SECONDS)
         self.run(execute_if_score_less_than('@p', SCOREBOARD_NAME, poses_count, cmd))
         
-        self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, 'say All Done!'))
+        if VERBOSE:
+            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, 'say All Done!'))
         
 
 class DancingArmourStand(MinecraftFunction):
