@@ -32,7 +32,7 @@ def create_pose(i:int):
 
 def create_armor_stand_data():
     data = []
-    for i in range(50):
+    for i in range(72):
         pose = create_pose(i)
         data.append(pose)
     return data

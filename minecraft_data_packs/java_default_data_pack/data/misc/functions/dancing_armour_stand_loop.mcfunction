@@ -48,13 +48,35 @@ execute at @p[scores={dancing_armour_count=46}] run data merge entity @e[tag=dan
 execute at @p[scores={dancing_armour_count=47}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,235f,0f],LeftArm:[-2350f,0f,0f],RightArm:[2350f,0f,0f]}}
 execute at @p[scores={dancing_armour_count=48}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,240f,0f],LeftArm:[-2400f,0f,0f],RightArm:[2400f,0f,0f]}}
 execute at @p[scores={dancing_armour_count=49}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,245f,0f],LeftArm:[-2450f,0f,0f],RightArm:[2450f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=50}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,250f,0f],LeftArm:[-2500f,0f,0f],RightArm:[2500f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=51}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,255f,0f],LeftArm:[-2550f,0f,0f],RightArm:[2550f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=52}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,260f,0f],LeftArm:[-2600f,0f,0f],RightArm:[2600f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=53}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,265f,0f],LeftArm:[-2650f,0f,0f],RightArm:[2650f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=54}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,270f,0f],LeftArm:[-2700f,0f,0f],RightArm:[2700f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=55}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,275f,0f],LeftArm:[-2750f,0f,0f],RightArm:[2750f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=56}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,280f,0f],LeftArm:[-2800f,0f,0f],RightArm:[2800f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=57}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,285f,0f],LeftArm:[-2850f,0f,0f],RightArm:[2850f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=58}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,290f,0f],LeftArm:[-2900f,0f,0f],RightArm:[2900f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=59}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,295f,0f],LeftArm:[-2950f,0f,0f],RightArm:[2950f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=60}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,300f,0f],LeftArm:[-3000f,0f,0f],RightArm:[3000f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=61}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,305f,0f],LeftArm:[-3050f,0f,0f],RightArm:[3050f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=62}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,310f,0f],LeftArm:[-3100f,0f,0f],RightArm:[3100f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=63}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,315f,0f],LeftArm:[-3150f,0f,0f],RightArm:[3150f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=64}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,320f,0f],LeftArm:[-3200f,0f,0f],RightArm:[3200f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=65}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,325f,0f],LeftArm:[-3250f,0f,0f],RightArm:[3250f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=66}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,330f,0f],LeftArm:[-3300f,0f,0f],RightArm:[3300f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=67}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,335f,0f],LeftArm:[-3350f,0f,0f],RightArm:[3350f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=68}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,340f,0f],LeftArm:[-3400f,0f,0f],RightArm:[3400f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=69}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,345f,0f],LeftArm:[-3450f,0f,0f],RightArm:[3450f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=70}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,350f,0f],LeftArm:[-3500f,0f,0f],RightArm:[3500f,0f,0f]}}
+execute at @p[scores={dancing_armour_count=71}] run data merge entity @e[tag=dancing_armour,limit=1] {Pose:{Head:[0f,355f,0f],LeftArm:[-3550f,0f,0f],RightArm:[3550f,0f,0f]}}
 
 
 # Increment score
 scoreboard players add @a dancing_armour_count 1
 
 # Run again
-execute at @p[scores={dancing_armour_count=..50}] run schedule function misc:dancing_armour_stand_loop 1t
+execute at @p[scores={dancing_armour_count=..72}] run schedule function misc:dancing_armour_stand_loop 1t
 
 # Start over when finished
-execute at @p[scores={dancing_armour_count=50}] run scoreboard players set @a dancing_armour_count 0
+execute at @p[scores={dancing_armour_count=72}] run scoreboard players set @a dancing_armour_count 0
