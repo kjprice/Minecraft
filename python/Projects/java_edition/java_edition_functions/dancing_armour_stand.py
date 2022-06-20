@@ -4,13 +4,21 @@ SCOREBOARD_NAME = 'dancing_armour_count'
 SCOREBOARD_TARGETS = '@a'
 SCORBOARD_STARTING_SCORE = 0
 SCOREBOARD_SCORE_INCREMENT = 1
-ARMOUR_STAND_POSES = [
-    # '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}'
-    '{ShowArms:1b}',
-    '{ShowArms:0b}',
-    '{ShowArms:1b}',
-]
 DELAY_IN_SECONDS = 0.5
+
+def create_pose(i:int):
+    return 'LeftArm:[{}f,0f,0f]'.format(i *20)
+
+def create_armor_stand_data():
+    data = []
+    for i in range(6):
+        pose = create_pose(i)
+        # '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
+        base_data = '{NoBasePlate:1b,ShowArms:1b,Pose:{_POSE_}}'.replace('_POSE_', pose)
+        data.append(base_data)
+    return data
+print(create_armor_stand_data())
+
 
 def execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='='):
     # Use "at" instead of "as"...otherwise will execute relative to world spawn point (because of "schedule")
@@ -34,9 +42,10 @@ class DancingArmourStandLoop(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
         super().__init__('dancing_armour_stand_loop', data_pack=data_pack)
     def build(self):
-        poses_count = len(ARMOUR_STAND_POSES)
+        armour_stand_data = create_armor_stand_data()
+        poses_count = len(armour_stand_data)
         self.run('kill @e[type=minecraft:armor_stand]')
-        for i, pose in enumerate(ARMOUR_STAND_POSES):
+        for i, pose in enumerate(armour_stand_data):
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
             cmd = 'summon minecraft:armor_stand ~ ~ ~2 {}'.format(pose)
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, cmd))
