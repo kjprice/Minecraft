@@ -1,6 +1,6 @@
 import unittest
 
-from .MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunctionTest
+from .MinecraftAddons.MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunctionTest
 from .common.tools import CommonToolsTest
 from .common.images import CommonImageToolsTest
 

@@ -4,7 +4,7 @@ import os
 import cv2
 import numpy as np
 
-from ...MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunction
+from ...MinecraftAddons.MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunction
 from ...common.images import ResizeImage
 
 class CollageFunction(MinecraftFunction):

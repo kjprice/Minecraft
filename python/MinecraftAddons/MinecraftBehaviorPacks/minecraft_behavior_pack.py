@@ -2,8 +2,8 @@ import os
 import shutil
 from typing import List
 
-from ..common.json_helper import read_json, write_json
-from ..common.config import BEHAVIOR_PACK_ROOT_DIR, BEHAVIOR_PACK_TEMPLATE_DIR
+from ...common.json_helper import read_json, write_json
+from ...common.config import BEHAVIOR_PACK_ROOT_DIR, BEHAVIOR_PACK_TEMPLATE_DIR
 
 class MinecraftBehaviorPack():
     filepath = None

@@ -1,7 +1,7 @@
 from .create_collage import Collage
-from ...MinecraftBehaviorPacks.minecraft_behavior_pack import MinecraftBehaviorPack
-from ...MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunction
-from ...MinecraftResourcePacks.minecraft_resource_pack import MinecraftResourcePack
+from ...MinecraftAddons.MinecraftBehaviorPacks.minecraft_behavior_pack import MinecraftBehaviorPack
+from ...MinecraftAddons.MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunction
+from ...MinecraftAddons.MinecraftResourcePacks.minecraft_resource_pack import MinecraftResourcePack
 from ...MinecraftStructures.minecraft_structure import MinecraftCommandBlockStructure
 
 RESOURCE_PACK_UUID = '858eb5be-3590-4be7-a81d-86cb833ecc6d'

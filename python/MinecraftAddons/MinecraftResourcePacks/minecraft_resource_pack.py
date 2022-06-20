@@ -5,7 +5,7 @@ from typing import List
 import cv2
 from numpy import block
 
-from ..common.json_helper import read_json, write_json
+from ...common.json_helper import read_json, write_json
 
 class MinecraftResourcePack():
     ROOT_DIR = 'minecraft_resource_packs'

@@ -1,8 +1,8 @@
 import os
 from unittest.mock import patch, MagicMock
 
-from ...common import unit_test
-from ...common.config import get_behavior_pack_functions_dir
+from ....common import unit_test
+from ....common.config import get_behavior_pack_functions_dir
 
 
 class MinecraftFunction():

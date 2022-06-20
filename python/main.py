@@ -1,4 +1,4 @@
-from .MinecraftFunctions.create_all_functions import create_all
+from .MinecraftAddons.MinecraftFunctions.create_all_functions import create_all
 from .Projects.collage.family_collage import FamilyCollage
 from .MinecraftStructures import minecraft_structure
 
