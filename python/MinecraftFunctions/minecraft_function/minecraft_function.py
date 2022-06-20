@@ -2,21 +2,23 @@ import os
 from unittest.mock import patch, MagicMock
 
 from ...common import unit_test
-from ...common.config import BEHAVIOR_PACK_ROOT_DIR
+from ...common.config import get_behavior_pack_functions_dir
 
 
 class MinecraftFunction():
     filepath = None
     function_name = None
     output = None
-    behavior_pack_dir = os.path.join(BEHAVIOR_PACK_ROOT_DIR, 'first_behavior_pack')
-    def __init__(self, function_name: str, behavior_pack = None) -> None:
+    function_directory = None
+    def __init__(self, function_name: str, behavior_pack = None, data_pack = None) -> None:
         self.output = []
         self.function_name = function_name
         filename = '{}.mcfunction'.format(function_name)
         if behavior_pack is not None:
-            self.behavior_pack_dir = os.path.join(BEHAVIOR_PACK_ROOT_DIR, behavior_pack.behavior_pack_folder_name)
-        self.filepath = os.path.join(self.behavior_pack_dir, 'functions', filename)
+            self.function_directory = get_behavior_pack_functions_dir(behavior_pack.behavior_pack_folder_name)
+        else:
+            self.function_directory = get_behavior_pack_functions_dir()
+        self.filepath = os.path.join(self.function_directory, filename)
     def save_output(self, output ) -> None:
         directory = os.path.dirname(self.filepath)
         if not os.path.exists(directory):
@@ -40,7 +42,7 @@ class MinecraftFunctionTest(unit_test.TestCase):
         self.assertPathEqual(fn.filepath, 'minecraft_behavior_packs/first_behavior_pack/functions/test_name.mcfunction')
         self.assertEqual(fn.function_name, 'test_name')
         self.assertListEqual(fn.output, [])
-        self.assertPathEqual(fn.behavior_pack_dir, 'minecraft_behavior_packs/first_behavior_pack')
+        self.assertPathEqual(fn.function_directory, 'minecraft_behavior_packs/first_behavior_pack/functions')
 
     def test_init_with_behavior_pack(self):
         mock_behavior_pack = MagicMock()
@@ -48,7 +50,7 @@ class MinecraftFunctionTest(unit_test.TestCase):
         fn = MinecraftFunction('test_name', mock_behavior_pack)
 
         self.assertPathEqual(fn.filepath, 'minecraft_behavior_packs/behavior_test_path/functions/test_name.mcfunction')
-        self.assertPathEqual(fn.behavior_pack_dir, 'minecraft_behavior_packs/behavior_test_path')
+        self.assertPathEqual(fn.function_directory, 'minecraft_behavior_packs/behavior_test_path/functions')
 
     def test_run(self):
         fn = MinecraftFunction('test_name')
