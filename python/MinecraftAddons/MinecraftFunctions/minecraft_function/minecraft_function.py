@@ -2,7 +2,7 @@ import os
 from unittest.mock import patch, MagicMock
 
 from ....common import unit_test
-from ....common.config import get_behavior_pack_functions_dir, get_data_pack_functions_dir
+from ....common.config import get_behavior_pack_functions_dir, get_data_pack_functions_dir, DATA_PACK_DEFAULT_NAMESPACE
 
 
 class MinecraftFunction():
@@ -10,16 +10,25 @@ class MinecraftFunction():
     function_name = None
     output = None
     function_directory = None
-    def __init__(self, function_name: str, behavior_pack = None, data_pack = None) -> None:
+    java_edition = None
+    namespace = None
+    def __init__(self, function_name: str, behavior_pack = None, data_pack = None, namespace:str = None) -> None:
         self.output = []
         self.function_name = function_name
+        self.namespace = namespace
         filename = '{}.mcfunction'.format(function_name)
+
         if data_pack is not None:
+            self.java_edition = True
+            # TODO: Add namespace as argument
             self.function_directory = get_data_pack_functions_dir(data_pack.folder_name)
-        elif behavior_pack is not None:
-            self.function_directory = get_behavior_pack_functions_dir(behavior_pack.behavior_pack_folder_name)
         else:
-            self.function_directory = get_behavior_pack_functions_dir()
+            self.java_edition = False
+            if behavior_pack is not None:
+                self.function_directory = get_behavior_pack_functions_dir(behavior_pack.behavior_pack_folder_name)
+            else:
+                self.function_directory = get_behavior_pack_functions_dir()
+
         self.filepath = os.path.join(self.function_directory, filename)
     def save_output(self, output ) -> None:
         directory = os.path.dirname(self.filepath)
@@ -27,10 +36,19 @@ class MinecraftFunction():
             os.makedirs(directory)
         with open(self.filepath, 'w') as f:
             f.write(output)
+    @property
+    def name(self):
+        if self.java_edition:
+            namespace = self.namespace if self.namespace is not None else DATA_PACK_DEFAULT_NAMESPACE
+            return '{}:{}'.format(namespace, self.function_name)
+        
+        return self.function_name
     def build(self) -> None:
         raise Exception('This method should be overwritten')
     def run(self, output):
         self.output.append(output)
+    def run_function(self, fn):
+        self.run('function {}'.format(fn.name))
     def run_all(self) -> None:
         self.build()
         self.save_output('\n'.join(self.output))

@@ -1,0 +1,2 @@
+function misc:dancing_armour_stand_start
+function misc:dancing_armour_stand_loop
