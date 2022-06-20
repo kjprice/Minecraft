@@ -46,6 +46,9 @@ def execute_if_score_equals(selectors, scoreboard_name, score_value, command):
 def execute_if_score_less_than(selectors, scoreboard_name, score_value, command):
     return execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='=..')
 
+def set_scoreboard():
+    return 'scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE)
+
 class DancingArmourStandStart(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
         super().__init__('dancing_armour_stand_start', data_pack=data_pack)
@@ -54,7 +57,8 @@ class DancingArmourStandStart(MinecraftFunction):
         self.run('kill @e[tag={}]'.format(TAG_NAME))
         self.run('summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA))
         self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
-        self.run('scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE))
+        self.run(set_scoreboard())
+        
 
 class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
@@ -65,7 +69,7 @@ class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
         self.run('schedule function {} 1t'.format(self.name))
 
 class DancingArmourStandLoop(MinecraftFunction):
-    def __init__(self, data_pack=None) -> None:
+    def __init__(self, data_pack) -> None:
         super().__init__('dancing_armour_stand_loop', data_pack=data_pack)
     def build(self):
         armour_stand_data = create_armor_stand_data()
@@ -92,6 +96,10 @@ class DancingArmourStandLoop(MinecraftFunction):
         cmd = 'schedule function {} {}t'.format(self.name, DELAY_IN_TICKS)
         self.run(execute_if_score_less_than('@p', SCOREBOARD_NAME, poses_count, cmd))
         
+        self.run('')
+        self.run('# Start over when finished')
+        self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, set_scoreboard()))
+
         if VERBOSE:
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, 'say All Done!'))
         

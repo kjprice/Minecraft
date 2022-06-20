@@ -55,3 +55,6 @@ scoreboard players add @a dancing_armour_count 1
 
 # Run again
 execute at @p[scores={dancing_armour_count=..50}] run schedule function misc:dancing_armour_stand_loop 1t
+
+# Start over when finished
+execute at @p[scores={dancing_armour_count=50}] run scoreboard players set @a dancing_armour_count 0
