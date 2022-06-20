@@ -9,6 +9,9 @@ class MinecraftAddon():
     def __init__(self, destination_filepath, template_path) -> None:
         self.destination_filepath = destination_filepath
         self.template_path = template_path
+
+        self.create()
+        self.configure()
     
     def create(self):
         shutil.rmtree(self.destination_filepath)
