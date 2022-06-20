@@ -13,7 +13,8 @@ ARMOUR_STAND_POSES = [
 DELAY_IN_SECONDS = 3
 
 def execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='='):
-    return f'execute as {selectors}[scores={{{scoreboard_name}{operator}{score_value}}}] run {command}'
+    # Use "at" instead of "as"...otherwise will execute relative to world spawn point (because of "schedule")
+    return f'execute at {selectors}[scores={{{scoreboard_name}{operator}{score_value}}}] run {command}'
 
 def execute_if_score_equals(selectors, scoreboard_name, score_value, command):
     return execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='=')
@@ -35,10 +36,7 @@ class DancingArmourStandLoop(MinecraftFunction):
     def build(self):
         poses_count = len(ARMOUR_STAND_POSES)
         self.run('kill @e[type=minecraft:armor_stand]')
-        # self.run('tp @p ~ ~ ~')
         for i, pose in enumerate(ARMOUR_STAND_POSES):
-            # self.run('say Running step {}'.format(i+1))
-        #     # TODO: Remove all armour stands
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
             cmd = 'summon minecraft:armor_stand ~ ~ ~5 {}'.format(pose)
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i+1, cmd))
