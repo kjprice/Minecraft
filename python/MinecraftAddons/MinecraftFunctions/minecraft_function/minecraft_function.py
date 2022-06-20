@@ -2,7 +2,7 @@ import os
 from unittest.mock import patch, MagicMock
 
 from ....common import unit_test
-from ....common.config import get_behavior_pack_functions_dir
+from ....common.config import get_behavior_pack_functions_dir, get_data_pack_functions_dir
 
 
 class MinecraftFunction():
@@ -14,7 +14,9 @@ class MinecraftFunction():
         self.output = []
         self.function_name = function_name
         filename = '{}.mcfunction'.format(function_name)
-        if behavior_pack is not None:
+        if data_pack is not None:
+            self.function_directory = get_data_pack_functions_dir(data_pack.folder_name)
+        elif behavior_pack is not None:
             self.function_directory = get_behavior_pack_functions_dir(behavior_pack.behavior_pack_folder_name)
         else:
             self.function_directory = get_behavior_pack_functions_dir()

@@ -6,7 +6,6 @@ from ...common.config import BEHAVIOR_PACK_ROOT_DIR, BEHAVIOR_PACK_TEMPLATE_DIR
 from ..minecraft_addon import MinecraftAddon
 
 class MinecraftBehaviorPack(MinecraftAddon):
-    filepath = None
     pack_name = None
     output = None
     behavior_pack_folder_name = None

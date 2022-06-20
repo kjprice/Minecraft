@@ -2,6 +2,7 @@ import os
 import shutil
 
 from ..common.json_helper import read_json, write_json
+from ..common.tools import ensure_directory_exists
 
 class MinecraftAddon():
     destination_filepath = None
@@ -14,6 +15,7 @@ class MinecraftAddon():
         self.configure()
     
     def create(self):
+        ensure_directory_exists(self.destination_filepath)
         shutil.rmtree(self.destination_filepath)
         shutil.copytree(self.template_path, self.destination_filepath, dirs_exist_ok=True)
 

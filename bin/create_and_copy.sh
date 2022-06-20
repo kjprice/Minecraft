@@ -7,3 +7,4 @@ sh bin/copy_structures.sh
 
 sh bin/copy_resource_packs.sh
 sh bin/copy_behavior_packs.sh
+sh bin/copy_data_packs.sh
