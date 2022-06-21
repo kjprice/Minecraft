@@ -66,7 +66,8 @@ class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
         self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
         self.run('schedule function {} 1t'.format(self.name))
 
-class DancingArmourStandLoop(MinecraftFunction):
+
+class FunctionLoopRun(MinecraftFunction):
     def __init__(self, data_pack) -> None:
         super().__init__('dancing_armour_stand_loop', data_pack=data_pack)
     def build(self):
@@ -100,9 +101,12 @@ class DancingArmourStandLoop(MinecraftFunction):
         
         if VERBOSE:
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, 'say All Done!'))
-        
+       
+class DancingArmourStandLoop(FunctionLoopRun):
+    def __init__(self, data_pack) -> None:
+        super().__init__(data_pack) 
 
-class DancingArmourStand(MinecraftFunction):
+class FunctionLoopStart(MinecraftFunction):
     start_fn = None
     loop_fn = None
     def __init__(self, data_pack=None) -> None:
@@ -121,3 +125,7 @@ class DancingArmourStand(MinecraftFunction):
         self.run_function(self.start_fn)
         self.run_function(self.loop_fn)
         self.run_function(self.face_player_fn)
+
+class DancingArmourStand(FunctionLoopStart):
+    def __init__(self, data_pack=None) -> None:
+        super().__init__(data_pack)
