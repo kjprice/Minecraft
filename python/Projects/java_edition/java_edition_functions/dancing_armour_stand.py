@@ -99,12 +99,7 @@ class FunctionLoopRun(MinecraftFunction):
 class FunctionLoop(MinecraftFunction):
     start_fn = None
     loop_fn = None
-    face_player_fn = None
-
-    entity_tag_name = None
     def __init__(self, data_pack, namespace:str) -> None:
-        self.entity_tag_name = 'tag_{}'.format(namespace)
-
         super().__init__('go', data_pack=data_pack, namespace=namespace)
 
     def run_dependent_functions(self):
@@ -140,8 +135,12 @@ class FunctionLoop(MinecraftFunction):
         return []
 
 class DancingArmourStand(FunctionLoop):
+    entity_tag_name = None
     def __init__(self, data_pack=None) -> None:
-        super().__init__(data_pack, namespace='dancing_armor_stand')
+        namespace = 'dancing_armor_stand'
+        self.entity_tag_name = 'tag_{}'.format(namespace)
+        
+        super().__init__(data_pack, namespace=namespace)
 
     def commands_to_run_first(self):
         tag_name = self.entity_tag_name
