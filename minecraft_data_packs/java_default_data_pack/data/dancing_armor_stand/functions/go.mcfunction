@@ -3,4 +3,3 @@ scoreboard players set @a dancing_armour_count 0
 
 function dancing_armor_stand:loop_run_before
 function dancing_armor_stand:loop_run
-function dancing_armor_stand:loop_dancing_armour_stand_face_player

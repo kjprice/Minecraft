@@ -80,3 +80,7 @@ execute at @p[scores={dancing_armour_count=..72}] run schedule function dancing_
 
 # Start over when finished
 execute at @p[scores={dancing_armour_count=72}] run scoreboard players set @a dancing_armour_count 0
+
+# Run after each loop
+# Always face player
+execute at @e[tag=tag_dancing_armor_stand] run tp @e[tag=tag_dancing_armor_stand] ~ ~ ~ facing entity @p

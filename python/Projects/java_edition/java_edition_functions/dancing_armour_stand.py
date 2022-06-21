@@ -1,3 +1,5 @@
+from typing import List
+
 from ....MinecraftAddons.MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunction
 
 SCOREBOARD_NAME = 'dancing_armour_count'
@@ -53,27 +55,16 @@ class DancingArmourStandStart(MinecraftFunction):
         for command in self.commands:
             self.run(command)
 
-# TODO: Decouple this logic from the class
-class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
-    parent = None
-    def __init__(self, parent) -> None:
-        self.parent = parent
-        super().__init__('loop_dancing_armour_stand_face_player', data_pack=parent.data_pack, namespace=parent.namespace)
-    def build(self):
-        tag_name = self.parent.entity_tag_name
-        self.run('# Always face player')
-        self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(tag_name, tag_name))
-        self.run('schedule function {} 1t'.format(self.name))
-
-
 class FunctionLoopRun(MinecraftFunction):
-    commands_to_run = None
-    def __init__(self, parent, commands) -> None:
-        self.commands_to_run = commands
+    loop_commands = None
+    each_loop_commands = None
+    def __init__(self, parent, commands, each_loop_commands) -> None:
+        self.loop_commands = commands
+        self.each_loop_commands = each_loop_commands
         super().__init__('loop_run', data_pack=parent.data_pack, namespace=parent.namespace)
     def build(self):
-        commands_count = len(self.commands_to_run)
-        for i, command in enumerate(self.commands_to_run):
+        commands_count = len(self.loop_commands)
+        for i, command in enumerate(self.loop_commands):
             if VERBOSE:
                 self.run('')
                 self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
@@ -97,6 +88,10 @@ class FunctionLoopRun(MinecraftFunction):
         self.run('')
         self.run('# Start over when finished')
         self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, set_scoreboard()))
+
+        self.run('')
+        self.run('# Run after each loop')
+        self.run('\n'.join(self.each_loop_commands))
         
         if VERBOSE:
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, 'say All Done!'))
@@ -110,20 +105,18 @@ class FunctionLoop(MinecraftFunction):
     def __init__(self, data_pack, namespace:str) -> None:
         self.entity_tag_name = 'tag_{}'.format(namespace)
 
-
         super().__init__('go', data_pack=data_pack, namespace=namespace)
 
     def run_dependent_functions(self):
         start_commands = self.commands_to_run_first()
         loop_commands = self.commands_to_iterate()
+        each_loop_commands = self.commands_to_run_end_of_every_loop()
 
         self.start_fn = DancingArmourStandStart(self, start_commands)
-        self.loop_fn = FunctionLoopRun(self, loop_commands)
-        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(self)
+        self.loop_fn = FunctionLoopRun(self, loop_commands, each_loop_commands)
 
         self.start_fn.run_all()
         self.loop_fn.run_all()
-        self.face_player_fn.run_all()
 
     def build(self) -> None:
         self.run_dependent_functions()
@@ -133,15 +126,18 @@ class FunctionLoop(MinecraftFunction):
         self.run('')
         self.run_function(self.start_fn)
         self.run_function(self.loop_fn)
-        self.run_function(self.face_player_fn)
     
     # Override
-    def commands_to_run_first(self) -> None:
+    def commands_to_run_first(self) -> List[str]:
         raise Exception('This method should be overriden')
 
     # Override
-    def commands_to_iterate(self) -> None:
+    def commands_to_iterate(self) -> List[str]:
         raise Exception('This method should be overriden')
+
+    # Override (optional)
+    def commands_to_run_end_of_every_loop(self) -> List[str]:
+        return []
 
 class DancingArmourStand(FunctionLoop):
     def __init__(self, data_pack=None) -> None:
@@ -169,3 +165,12 @@ class DancingArmourStand(FunctionLoop):
             cmd = 'data merge entity @e[tag={},limit=1] {}'.format(self.entity_tag_name, pose)
             commands.append(cmd)
         return commands
+    
+    def commands_to_run_end_of_every_loop(self):
+        tag_name = self.entity_tag_name
+
+        return [
+            '# Always face player',
+            'execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(tag_name, tag_name),
+        ]
+
