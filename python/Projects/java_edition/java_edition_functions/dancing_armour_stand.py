@@ -6,14 +6,6 @@ SCORBOARD_STARTING_SCORE = 0
 SCOREBOARD_SCORE_INCREMENT = 1
 DELAY_IN_TICKS = 1
 VERBOSE = False
-TAG_NAME = 'dancing_armour'
-
-# {ArmorItems:[{id:diamond_boots,Count:1},{id:diamond_leggings,Count:1},{id:diamond_chestplate,Count:1},{id:diamond_helmet,Count:1}]}
-# NBT_ARMOR_HELMET = '[{},{},{},{id:carved_pumpkin,Count:1}]'
-NBT_ARMOR_HELMET = '[{},{},{},{id:diamond_helmet,Count:1}]'
-
-# '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
-BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,ArmorItems:_ARMOR_,Tags:["_TAGS_"]}'.replace('_ARMOR_', NBT_ARMOR_HELMET).replace('_TAGS_', TAG_NAME)
 
 def create_pose(i:int):
     left_arm = 'LeftArm:[{}f,0f,0f]'.format(-i * 50)
@@ -61,12 +53,16 @@ class DancingArmourStandStart(MinecraftFunction):
         for command in self.commands:
             self.run(command)
 
+# TODO: Decouple this logic from the class
 class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
-    def __init__(self, data_pack, namespace) -> None:
-        super().__init__('loop_dancing_armour_stand_face_player', data_pack=data_pack, namespace=namespace)
+    parent = None
+    def __init__(self, parent) -> None:
+        self.parent = parent
+        super().__init__('loop_dancing_armour_stand_face_player', data_pack=parent.data_pack, namespace=parent.namespace)
     def build(self):
+        tag_name = self.parent.entity_tag_name
         self.run('# Always face player')
-        self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
+        self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(tag_name, tag_name))
         self.run('schedule function {} 1t'.format(self.name))
 
 
@@ -111,16 +107,19 @@ class FunctionLoop(MinecraftFunction):
     start_fn = None
     loop_fn = None
     face_player_fn = None
+
+    entity_tag_name = None
     def __init__(self, data_pack, namespace:str) -> None:
         self.data_pack = data_pack
         self.namespace = namespace
+        self.entity_tag_name = 'tag_{}'.format(namespace)
 
         start_commands = self.commands_to_run_first()
         loop_commands = self.commands_to_iterate()
 
         self.start_fn = DancingArmourStandStart(self, start_commands)
         self.loop_fn = FunctionLoopRun(self, loop_commands)
-        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack, namespace)
+        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(self)
 
         self.start_fn.run_all()
         self.loop_fn.run_all()
@@ -148,8 +147,17 @@ class DancingArmourStand(FunctionLoop):
         super().__init__(data_pack, namespace='dancing_armor_stand')
 
     def commands_to_run_first(self):
+        tag_name = self.entity_tag_name
+        # {ArmorItems:[{id:diamond_boots,Count:1},{id:diamond_leggings,Count:1},{id:diamond_chestplate,Count:1},{id:diamond_helmet,Count:1}]}
+
+        # NBT_ARMOR_HELMET = '[{},{},{},{id:carved_pumpkin,Count:1}]'
+        NBT_ARMOR_HELMET = '[{},{},{},{id:diamond_helmet,Count:1}]'
+
+        # '{NoBasePlate:1b,ShowArms:1b,Pose:{Body:[278f,0f,0f],Head:[317f,0f,0f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]}}',
+        BASE_DATA = '{NoBasePlate:1b,ShowArms:1b,ArmorItems:_ARMOR_,Tags:["_TAGS_"]}'.replace('_ARMOR_', NBT_ARMOR_HELMET).replace('_TAGS_', tag_name)
+
         return [
-            'kill @e[tag={}]'.format(TAG_NAME),
+            'kill @e[tag={}]'.format(tag_name),
             'summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA),
         ]
     
@@ -157,6 +165,6 @@ class DancingArmourStand(FunctionLoop):
         commands = []
         armour_stand_data = create_armor_stand_data()
         for pose in armour_stand_data:
-            cmd = 'data merge entity @e[tag={},limit=1] {}'.format(TAG_NAME, pose)
+            cmd = 'data merge entity @e[tag={},limit=1] {}'.format(self.entity_tag_name, pose)
             commands.append(cmd)
         return commands
