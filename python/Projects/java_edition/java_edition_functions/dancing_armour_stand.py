@@ -68,17 +68,17 @@ class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
 
 
 class FunctionLoopRun(MinecraftFunction):
-    def __init__(self, data_pack, namespace) -> None:
+    commands_to_run = None
+    def __init__(self, data_pack, namespace, commands) -> None:
+        self.commands_to_run = commands
         super().__init__('loop_run', data_pack=data_pack, namespace=namespace)
     def build(self):
-        armour_stand_data = create_armor_stand_data()
-        poses_count = len(armour_stand_data)
-        for i, pose in enumerate(armour_stand_data):
+        commands_count = len(self.commands_to_run)
+        for i, command in enumerate(self.commands_to_run):
             if VERBOSE:
                 self.run('')
                 self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
-            cmd = 'data merge entity @e[tag={},limit=1] {}'.format(TAG_NAME, pose)
-            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, cmd))
+            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, command))
 
         self.run('')
         
@@ -93,21 +93,22 @@ class FunctionLoopRun(MinecraftFunction):
         self.run('')
         self.run('# Run again')
         cmd = 'schedule function {} {}t'.format(self.name, DELAY_IN_TICKS)
-        self.run(execute_if_score_less_than('@p', SCOREBOARD_NAME, poses_count, cmd))
+        self.run(execute_if_score_less_than('@p', SCOREBOARD_NAME, commands_count, cmd))
         
         self.run('')
         self.run('# Start over when finished')
-        self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, set_scoreboard()))
+        self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, set_scoreboard()))
         
         if VERBOSE:
-            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, 'say All Done!'))
+            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, 'say All Done!'))
 
-class FunctionLoopStart(MinecraftFunction):
+class FunctionLoop(MinecraftFunction):
     start_fn = None
     loop_fn = None
     def __init__(self, data_pack, namespace:str) -> None:
+        commands = self.commands_to_iterate()
         self.start_fn = DancingArmourStandStart(data_pack=data_pack, namespace=namespace)
-        self.loop_fn = FunctionLoopRun(data_pack=data_pack, namespace=namespace)
+        self.loop_fn = FunctionLoopRun(data_pack=data_pack, namespace=namespace, commands=commands)
         self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack=data_pack, namespace=namespace)
 
         self.start_fn.run_all()
@@ -123,9 +124,17 @@ class FunctionLoopStart(MinecraftFunction):
         self.run_function(self.face_player_fn)
     
     # Override
-    def commands_to_iterate(self):
+    def commands_to_iterate(self) -> None:
         raise Exception('This method should be overriden')
 
-class DancingArmourStand(FunctionLoopStart):
+class DancingArmourStand(FunctionLoop):
     def __init__(self, data_pack=None) -> None:
         super().__init__(data_pack, namespace='dancing_armor_stand')
+    
+    def commands_to_iterate(self):
+        commands = []
+        armour_stand_data = create_armor_stand_data()
+        for pose in armour_stand_data:
+            cmd = 'data merge entity @e[tag={},limit=1] {}'.format(TAG_NAME, pose)
+            commands.append(cmd)
+        return commands
