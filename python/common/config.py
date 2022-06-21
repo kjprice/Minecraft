@@ -19,4 +19,6 @@ def get_behavior_pack_functions_dir(behavior_pack_name:str = BEHAVIOR_PACK_DEFAU
 
 DATA_PACK_DEFAULT_NAMESPACE = 'misc'
 def get_data_pack_functions_dir(data_pack_name:str, namespace: str = DATA_PACK_DEFAULT_NAMESPACE):
+    if namespace is None:
+        namespace = DATA_PACK_DEFAULT_NAMESPACE
     return os.path.join(DATA_PACK_ROOT_DIR, data_pack_name, 'data', namespace, 'functions')

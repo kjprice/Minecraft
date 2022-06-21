@@ -21,7 +21,7 @@ class MinecraftFunction():
         if data_pack is not None:
             self.java_edition = True
             # TODO: Add namespace as argument
-            self.function_directory = get_data_pack_functions_dir(data_pack.folder_name)
+            self.function_directory = get_data_pack_functions_dir(data_pack.folder_name, namespace)
         else:
             self.java_edition = False
             if behavior_pack is not None:

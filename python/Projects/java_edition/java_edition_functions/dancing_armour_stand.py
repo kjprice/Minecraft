@@ -52,15 +52,15 @@ def set_scoreboard():
     return 'scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE)
 
 class DancingArmourStandStart(MinecraftFunction):
-    def __init__(self, data_pack=None) -> None:
-        super().__init__('dancing_armour_stand_start', data_pack=data_pack)
+    def __init__(self, data_pack, namespace) -> None:
+        super().__init__('dancing_armour_stand_start', data_pack=data_pack, namespace=namespace)
     def build(self):
         self.run('kill @e[tag={}]'.format(TAG_NAME))
         self.run('summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA))
 
 class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
-    def __init__(self, data_pack=None) -> None:
-        super().__init__('dancing_armour_stand_face_player', data_pack=data_pack)
+    def __init__(self, data_pack, namespace) -> None:
+        super().__init__('dancing_armour_stand_face_player', data_pack=data_pack, namespace=namespace)
     def build(self):
         self.run('# Always face player')
         self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
@@ -68,8 +68,8 @@ class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
 
 
 class FunctionLoopRun(MinecraftFunction):
-    def __init__(self, data_pack) -> None:
-        super().__init__('dancing_armour_stand_loop', data_pack=data_pack)
+    def __init__(self, data_pack, namespace) -> None:
+        super().__init__('dancing_armour_stand_loop', data_pack=data_pack, namespace=namespace)
     def build(self):
         armour_stand_data = create_armor_stand_data()
         poses_count = len(armour_stand_data)
@@ -101,23 +101,19 @@ class FunctionLoopRun(MinecraftFunction):
         
         if VERBOSE:
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, poses_count, 'say All Done!'))
-       
-class DancingArmourStandLoop(FunctionLoopRun):
-    def __init__(self, data_pack) -> None:
-        super().__init__(data_pack) 
 
 class FunctionLoopStart(MinecraftFunction):
     start_fn = None
     loop_fn = None
-    def __init__(self, data_pack=None) -> None:
-        self.start_fn = DancingArmourStandStart(data_pack=data_pack)
-        self.loop_fn = DancingArmourStandLoop(data_pack=data_pack)
-        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack=data_pack)
+    def __init__(self, data_pack, namespace:str) -> None:
+        self.start_fn = DancingArmourStandStart(data_pack=data_pack, namespace=namespace)
+        self.loop_fn = FunctionLoopRun(data_pack=data_pack, namespace=namespace)
+        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack=data_pack, namespace=namespace)
 
         self.start_fn.run_all()
         self.loop_fn.run_all()
         self.face_player_fn.run_all()
-        super().__init__('dancing_armour_stand', data_pack=data_pack)
+        super().__init__('dancing_armour_stand', data_pack=data_pack, namespace=namespace)
     def build(self) -> None:
         self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
         self.run(set_scoreboard())
@@ -125,7 +121,11 @@ class FunctionLoopStart(MinecraftFunction):
         self.run_function(self.start_fn)
         self.run_function(self.loop_fn)
         self.run_function(self.face_player_fn)
+    
+    # Override
+    def commands_to_iterate(self):
+        raise Exception('This method should be overriden')
 
 class DancingArmourStand(FunctionLoopStart):
     def __init__(self, data_pack=None) -> None:
-        super().__init__(data_pack)
+        super().__init__(data_pack, namespace='dancing_armor_stand')
