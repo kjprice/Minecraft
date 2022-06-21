@@ -53,14 +53,14 @@ def set_scoreboard():
 
 class DancingArmourStandStart(MinecraftFunction):
     def __init__(self, data_pack, namespace) -> None:
-        super().__init__('dancing_armour_stand_start', data_pack=data_pack, namespace=namespace)
+        super().__init__('loop_run_before', data_pack=data_pack, namespace=namespace)
     def build(self):
         self.run('kill @e[tag={}]'.format(TAG_NAME))
         self.run('summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA))
 
 class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
     def __init__(self, data_pack, namespace) -> None:
-        super().__init__('dancing_armour_stand_face_player', data_pack=data_pack, namespace=namespace)
+        super().__init__('loop_dancing_armour_stand_face_player', data_pack=data_pack, namespace=namespace)
     def build(self):
         self.run('# Always face player')
         self.run('execute at @e[tag={}] run tp @e[tag={}] ~ ~ ~ facing entity @p'.format(TAG_NAME, TAG_NAME))
@@ -69,7 +69,7 @@ class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
 
 class FunctionLoopRun(MinecraftFunction):
     def __init__(self, data_pack, namespace) -> None:
-        super().__init__('dancing_armour_stand_loop', data_pack=data_pack, namespace=namespace)
+        super().__init__('loop_run', data_pack=data_pack, namespace=namespace)
     def build(self):
         armour_stand_data = create_armor_stand_data()
         poses_count = len(armour_stand_data)
@@ -113,7 +113,7 @@ class FunctionLoopStart(MinecraftFunction):
         self.start_fn.run_all()
         self.loop_fn.run_all()
         self.face_player_fn.run_all()
-        super().__init__('dancing_armour_stand', data_pack=data_pack, namespace=namespace)
+        super().__init__('go', data_pack=data_pack, namespace=namespace)
     def build(self) -> None:
         self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
         self.run(set_scoreboard())

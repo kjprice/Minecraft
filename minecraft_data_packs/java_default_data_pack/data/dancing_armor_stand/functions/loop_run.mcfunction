@@ -76,7 +76,7 @@ execute at @p[scores={dancing_armour_count=71}] run data merge entity @e[tag=dan
 scoreboard players add @a dancing_armour_count 1
 
 # Run again
-execute at @p[scores={dancing_armour_count=..72}] run schedule function dancing_armor_stand:dancing_armour_stand_loop 1t
+execute at @p[scores={dancing_armour_count=..72}] run schedule function dancing_armor_stand:loop_run 1t
 
 # Start over when finished
 execute at @p[scores={dancing_armour_count=72}] run scoreboard players set @a dancing_armour_count 0

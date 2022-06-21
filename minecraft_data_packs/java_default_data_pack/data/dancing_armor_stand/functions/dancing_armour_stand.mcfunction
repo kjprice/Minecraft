@@ -1,6 +1,0 @@
-scoreboard objectives add dancing_armour_count dummy
-scoreboard players set @a dancing_armour_count 0
-
-function dancing_armor_stand:dancing_armour_stand_start
-function dancing_armor_stand:dancing_armour_stand_loop
-function dancing_armor_stand:dancing_armour_stand_face_player
