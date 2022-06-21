@@ -12,10 +12,12 @@ class MinecraftFunction():
     function_directory = None
     java_edition = None
     namespace = None
+    data_pack = None
     def __init__(self, function_name: str, behavior_pack = None, data_pack = None, namespace:str = None) -> None:
         self.output = []
         self.function_name = function_name
         self.namespace = namespace
+        self.data_pack = data_pack
         filename = '{}.mcfunction'.format(function_name)
 
         if data_pack is not None:

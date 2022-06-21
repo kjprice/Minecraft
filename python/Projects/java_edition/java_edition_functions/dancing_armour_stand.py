@@ -102,18 +102,18 @@ class FunctionLoopRun(MinecraftFunction):
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, 'say All Done!'))
 
 class FunctionLoop(MinecraftFunction):
-    data_pack = None
-    namespace = None
     start_fn = None
     loop_fn = None
     face_player_fn = None
 
     entity_tag_name = None
     def __init__(self, data_pack, namespace:str) -> None:
-        self.data_pack = data_pack
-        self.namespace = namespace
         self.entity_tag_name = 'tag_{}'.format(namespace)
 
+
+        super().__init__('go', data_pack=data_pack, namespace=namespace)
+
+    def run_dependent_functions(self):
         start_commands = self.commands_to_run_first()
         loop_commands = self.commands_to_iterate()
 
@@ -124,9 +124,10 @@ class FunctionLoop(MinecraftFunction):
         self.start_fn.run_all()
         self.loop_fn.run_all()
         self.face_player_fn.run_all()
-        super().__init__('go', data_pack=data_pack, namespace=namespace)
-    # def run_dependent_functions(self):
+
     def build(self) -> None:
+        self.run_dependent_functions()
+
         self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
         self.run(set_scoreboard())
         self.run('')
