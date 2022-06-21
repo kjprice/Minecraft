@@ -24,6 +24,11 @@ class FunctionLoopInterface(MinecraftFunction):
     def scoreboard(self) -> Scoreboard:
         pass
 
+    # Override
+    @property
+    def delay_in_ticks(self) -> int:
+        pass
+
 
 def create_pose(i:int):
     left_arm = 'LeftArm:[{}f,0f,0f]'.format(-i * 50)
@@ -82,6 +87,7 @@ class FunctionLoopRun(MinecraftFunction):
         super().__init__('loop_run', data_pack=parent.data_pack, namespace=parent.namespace)
     def build(self):
         scoreboard = self.parent.scoreboard
+        delay_in_ticks = self.parent.delay_in_ticks
         commands_count = len(self.loop_commands)
         for i, command in enumerate(self.loop_commands):
             if VERBOSE:
@@ -101,7 +107,7 @@ class FunctionLoopRun(MinecraftFunction):
 
         self.run('')
         self.run('# Run again')
-        cmd = 'schedule function {} {}t'.format(self.name, DELAY_IN_TICKS)
+        cmd = 'schedule function {} {}t'.format(self.name, delay_in_ticks)
         self.run(execute_if_score_less_than('@p', scoreboard.name, commands_count, cmd))
         
         self.run('')
@@ -119,8 +125,10 @@ class FunctionLoop(FunctionLoopInterface):
     start_fn = None
     loop_fn = None
     _scoreboard = None
-    def __init__(self, data_pack, namespace:str) -> None:
+    _delay_in_ticks = None
+    def __init__(self, data_pack, namespace:str, delay_in_ticks = DELAY_IN_TICKS) -> None:
         self._scoreboard = Scoreboard(name=f'{namespace}_count')
+        self._delay_in_ticks = delay_in_ticks
 
         super().__init__('go', data_pack=data_pack, namespace=namespace)
 
@@ -147,6 +155,10 @@ class FunctionLoop(FunctionLoopInterface):
     @property
     def scoreboard(self) -> Scoreboard:
         return self._scoreboard
+    
+    @property
+    def delay_in_ticks(self) -> int:
+        return self._delay_in_ticks
 
 class DancingArmourStand(FunctionLoop):
     entity_tag_name = None
