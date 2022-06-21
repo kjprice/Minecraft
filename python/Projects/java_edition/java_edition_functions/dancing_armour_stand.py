@@ -1,11 +1,8 @@
 from typing import List
 
 from ....MinecraftAddons.MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunction
+from .common.scoreboard import Scoreboard
 
-SCOREBOARD_NAME = 'dancing_armour_count'
-SCOREBOARD_TARGETS = '@a'
-SCORBOARD_STARTING_SCORE = 0
-SCOREBOARD_SCORE_INCREMENT = 1
 DELAY_IN_TICKS = 1
 VERBOSE = False
 
@@ -21,6 +18,11 @@ class FunctionLoopInterface(MinecraftFunction):
     # Override (optional)
     def commands_to_run_end_of_every_loop(self) -> List[str]:
         return []
+    
+    # Override
+    @property
+    def scoreboard(self) -> Scoreboard:
+        pass
 
 
 def create_pose(i:int):
@@ -56,8 +58,8 @@ def execute_if_score_equals(selectors, scoreboard_name, score_value, command):
 def execute_if_score_less_than(selectors, scoreboard_name, score_value, command):
     return execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='=..')
 
-def set_scoreboard():
-    return 'scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE)
+# def set_scoreboard():
+#     return 'scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE)
 
 class DancingArmourStandStart(MinecraftFunction):
     commands = None
@@ -72,48 +74,54 @@ class DancingArmourStandStart(MinecraftFunction):
 class FunctionLoopRun(MinecraftFunction):
     loop_commands = None
     each_loop_commands = None
+    parent = None
     def __init__(self, parent:FunctionLoopInterface, commands, each_loop_commands) -> None:
         self.loop_commands = commands
         self.each_loop_commands = each_loop_commands
+        self.parent = parent
         super().__init__('loop_run', data_pack=parent.data_pack, namespace=parent.namespace)
     def build(self):
+        scoreboard = self.parent.scoreboard
         commands_count = len(self.loop_commands)
         for i, command in enumerate(self.loop_commands):
             if VERBOSE:
                 self.run('')
-                self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, 'say Running step {}'.format(i+1)))
-            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, i, command))
+                self.run(execute_if_score_equals('@p', scoreboard.name, i, 'say Running step {}'.format(i+1)))
+            self.run(execute_if_score_equals('@p', scoreboard.name, i, command))
 
         self.run('')
         
         self.run('')
         self.run('# Increment score')
         self.run('scoreboard players add {} {} {}'.format(
-            SCOREBOARD_TARGETS,
-            SCOREBOARD_NAME,
-            SCOREBOARD_SCORE_INCREMENT
+            scoreboard.targets,
+            scoreboard.name,
+            scoreboard.increment_by
         ))
 
         self.run('')
         self.run('# Run again')
         cmd = 'schedule function {} {}t'.format(self.name, DELAY_IN_TICKS)
-        self.run(execute_if_score_less_than('@p', SCOREBOARD_NAME, commands_count, cmd))
+        self.run(execute_if_score_less_than('@p', scoreboard.name, commands_count, cmd))
         
         self.run('')
         self.run('# Start over when finished')
-        self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, set_scoreboard()))
+        self.run(execute_if_score_equals('@p', scoreboard.name, commands_count, scoreboard.initialize_players()))
 
         self.run('')
         self.run('# Run after each loop')
         self.run('\n'.join(self.each_loop_commands))
         
         if VERBOSE:
-            self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, 'say All Done!'))
+            self.run(execute_if_score_equals('@p', scoreboard.name, commands_count, 'say All Done!'))
 
 class FunctionLoop(FunctionLoopInterface):
     start_fn = None
     loop_fn = None
+    _scoreboard = None
     def __init__(self, data_pack, namespace:str) -> None:
+        self._scoreboard = Scoreboard(name=f'{namespace}_count')
+
         super().__init__('go', data_pack=data_pack, namespace=namespace)
 
     def run_dependent_functions(self):
@@ -130,11 +138,15 @@ class FunctionLoop(FunctionLoopInterface):
     def build(self) -> None:
         self.run_dependent_functions()
 
-        self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
-        self.run(set_scoreboard())
+        self.run('scoreboard objectives add {} dummy'.format(self.scoreboard.name))
+        self.run(self.scoreboard.initialize_players())
         self.run('')
         self.run_function(self.start_fn)
         self.run_function(self.loop_fn)
+    
+    @property
+    def scoreboard(self) -> Scoreboard:
+        return self._scoreboard
 
 class DancingArmourStand(FunctionLoop):
     entity_tag_name = None
