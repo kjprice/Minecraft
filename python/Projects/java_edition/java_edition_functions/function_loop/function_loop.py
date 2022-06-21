@@ -1,34 +1,9 @@
-from typing import List
-
 from .....MinecraftAddons.MinecraftFunctions.minecraft_function.minecraft_function import MinecraftFunction
 from ..common.scoreboard import Scoreboard
+from .function_loop_interface import FunctionLoopInterface
 
 DELAY_IN_TICKS = 1
 VERBOSE = False
-
-class FunctionLoopInterface(MinecraftFunction):
-    # Override
-    def commands_to_run_first(self) -> List[str]:
-        raise Exception('This method should be overriden')
-
-    # Override
-    def commands_to_iterate(self) -> List[str]:
-        raise Exception('This method should be overriden')
-
-    # Override (optional)
-    def commands_to_run_end_of_every_loop(self) -> List[str]:
-        return []
-    
-    # Override
-    @property
-    def scoreboard(self) -> Scoreboard:
-        pass
-
-    # Override
-    @property
-    def delay_in_ticks(self) -> int:
-        pass
-
 
 def execute_if_score_with_operator(selectors, scoreboard_name, score_value, command, operator='='):
     # Use "at" instead of "as"...otherwise will execute relative to world spawn point (because of "schedule")
