@@ -55,12 +55,8 @@ class DancingArmourStandStart(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
         super().__init__('dancing_armour_stand_start', data_pack=data_pack)
     def build(self):
-        self.run('# TODO: Update')
         self.run('kill @e[tag={}]'.format(TAG_NAME))
         self.run('summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA))
-        self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
-        self.run(set_scoreboard())
-        
 
 class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
     def __init__(self, data_pack=None) -> None:
@@ -119,6 +115,9 @@ class DancingArmourStand(MinecraftFunction):
         self.face_player_fn.run_all()
         super().__init__('dancing_armour_stand', data_pack=data_pack)
     def build(self) -> None:
+        self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
+        self.run(set_scoreboard())
+        self.run('')
         self.run_function(self.start_fn)
         self.run_function(self.loop_fn)
         self.run_function(self.face_player_fn)
