@@ -53,9 +53,10 @@ def set_scoreboard():
 
 class DancingArmourStandStart(MinecraftFunction):
     commands = None
-    def __init__(self, data_pack, namespace, commands) -> None:
+    def __init__(self, parent: MinecraftFunction, commands) -> None:
         self.commands = commands
-        super().__init__('loop_run_before', data_pack=data_pack, namespace=namespace)
+
+        super().__init__('loop_run_before', data_pack=parent.data_pack, namespace=parent.namespace)
     def build(self):
         for command in self.commands:
             self.run(command)
@@ -71,9 +72,9 @@ class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
 
 class FunctionLoopRun(MinecraftFunction):
     commands_to_run = None
-    def __init__(self, data_pack, namespace, commands) -> None:
+    def __init__(self, parent, commands) -> None:
         self.commands_to_run = commands
-        super().__init__('loop_run', data_pack=data_pack, namespace=namespace)
+        super().__init__('loop_run', data_pack=parent.data_pack, namespace=parent.namespace)
     def build(self):
         commands_count = len(self.commands_to_run)
         for i, command in enumerate(self.commands_to_run):
@@ -105,19 +106,27 @@ class FunctionLoopRun(MinecraftFunction):
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, 'say All Done!'))
 
 class FunctionLoop(MinecraftFunction):
+    data_pack = None
+    namespace = None
     start_fn = None
     loop_fn = None
+    face_player_fn = None
     def __init__(self, data_pack, namespace:str) -> None:
+        self.data_pack = data_pack
+        self.namespace = namespace
+
         start_commands = self.commands_to_run_first()
         loop_commands = self.commands_to_iterate()
-        self.start_fn = DancingArmourStandStart(data_pack=data_pack, namespace=namespace, commands=start_commands)
-        self.loop_fn = FunctionLoopRun(data_pack=data_pack, namespace=namespace, commands=loop_commands)
-        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack=data_pack, namespace=namespace)
+
+        self.start_fn = DancingArmourStandStart(self, start_commands)
+        self.loop_fn = FunctionLoopRun(self, loop_commands)
+        self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack, namespace)
 
         self.start_fn.run_all()
         self.loop_fn.run_all()
         self.face_player_fn.run_all()
         super().__init__('go', data_pack=data_pack, namespace=namespace)
+    # def run_dependent_functions(self):
     def build(self) -> None:
         self.run('scoreboard objectives add {} dummy'.format(SCOREBOARD_NAME))
         self.run(set_scoreboard())
