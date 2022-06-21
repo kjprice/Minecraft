@@ -9,6 +9,20 @@ SCOREBOARD_SCORE_INCREMENT = 1
 DELAY_IN_TICKS = 1
 VERBOSE = False
 
+class FunctionLoopInterface(MinecraftFunction):
+    # Override
+    def commands_to_run_first(self) -> List[str]:
+        raise Exception('This method should be overriden')
+
+    # Override
+    def commands_to_iterate(self) -> List[str]:
+        raise Exception('This method should be overriden')
+
+    # Override (optional)
+    def commands_to_run_end_of_every_loop(self) -> List[str]:
+        return []
+
+
 def create_pose(i:int):
     left_arm = 'LeftArm:[{}f,0f,0f]'.format(-i * 50)
     right_arm = 'RightArm:[{}f,0f,0f]'.format(i * 50)
@@ -47,7 +61,7 @@ def set_scoreboard():
 
 class DancingArmourStandStart(MinecraftFunction):
     commands = None
-    def __init__(self, parent: MinecraftFunction, commands) -> None:
+    def __init__(self, parent: FunctionLoopInterface, commands) -> None:
         self.commands = commands
 
         super().__init__('loop_run_before', data_pack=parent.data_pack, namespace=parent.namespace)
@@ -58,7 +72,7 @@ class DancingArmourStandStart(MinecraftFunction):
 class FunctionLoopRun(MinecraftFunction):
     loop_commands = None
     each_loop_commands = None
-    def __init__(self, parent, commands, each_loop_commands) -> None:
+    def __init__(self, parent:FunctionLoopInterface, commands, each_loop_commands) -> None:
         self.loop_commands = commands
         self.each_loop_commands = each_loop_commands
         super().__init__('loop_run', data_pack=parent.data_pack, namespace=parent.namespace)
@@ -96,7 +110,7 @@ class FunctionLoopRun(MinecraftFunction):
         if VERBOSE:
             self.run(execute_if_score_equals('@p', SCOREBOARD_NAME, commands_count, 'say All Done!'))
 
-class FunctionLoop(MinecraftFunction):
+class FunctionLoop(FunctionLoopInterface):
     start_fn = None
     loop_fn = None
     def __init__(self, data_pack, namespace:str) -> None:
@@ -121,25 +135,13 @@ class FunctionLoop(MinecraftFunction):
         self.run('')
         self.run_function(self.start_fn)
         self.run_function(self.loop_fn)
-    
-    # Override
-    def commands_to_run_first(self) -> List[str]:
-        raise Exception('This method should be overriden')
-
-    # Override
-    def commands_to_iterate(self) -> List[str]:
-        raise Exception('This method should be overriden')
-
-    # Override (optional)
-    def commands_to_run_end_of_every_loop(self) -> List[str]:
-        return []
 
 class DancingArmourStand(FunctionLoop):
     entity_tag_name = None
     def __init__(self, data_pack=None) -> None:
         namespace = 'dancing_armor_stand'
         self.entity_tag_name = 'tag_{}'.format(namespace)
-        
+
         super().__init__(data_pack, namespace=namespace)
 
     def commands_to_run_first(self):
