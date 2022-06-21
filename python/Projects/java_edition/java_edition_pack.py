@@ -2,6 +2,7 @@ from ...MinecraftAddons.MinecraftDataPacks.minecraft_data_pack import MinecraftD
 from .java_edition_functions.armour_stand import ArmourStand
 from .java_edition_functions.forever_village import ForeverVillage
 from .java_edition_functions.dancing_armour_stand import DancingArmourStand
+from .java_edition_functions.floating_platform import FloatingPlatform
 
 DATA_PACK_NAME = 'java_default'
 DATA_PACK_DESCRIPTION = 'java data pack for misc implementations'
@@ -15,4 +16,5 @@ class JavaEditionPack():
     def run_functions(self):
         ArmourStand(self.data_pack).run_all()
         DancingArmourStand(self.data_pack).run_all()
+        FloatingPlatform(self.data_pack).run_all()
         ForeverVillage(self.data_pack).run_all()

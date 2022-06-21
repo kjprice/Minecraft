@@ -16,6 +16,10 @@ class FunctionLoopInterface(MinecraftFunction):
     def commands_to_run_end_of_every_loop(self) -> List[str]:
         return []
     
+    # Override (optional)
+    def commands_to_run_beginning_of_every_loop(self) -> List[str]:
+        return []
+    
     # Override
     @property
     def scoreboard(self) -> Scoreboard:

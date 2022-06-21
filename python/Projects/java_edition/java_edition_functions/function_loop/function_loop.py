@@ -20,10 +20,11 @@ class FunctionLoop(FunctionLoopInterface):
     def run_dependent_functions(self):
         start_commands = self.commands_to_run_first()
         loop_commands = self.commands_to_iterate()
-        each_loop_commands = self.commands_to_run_end_of_every_loop()
+        begin_each_loop_commands = self.commands_to_run_beginning_of_every_loop()
+        end_each_loop_commands = self.commands_to_run_end_of_every_loop()
 
         self.start_fn = FunctionLoopStart(self, start_commands)
-        self.loop_fn = FunctionLoopRun(self, loop_commands, each_loop_commands)
+        self.loop_fn = FunctionLoopRun(self, loop_commands, begin_each_loop_commands, end_each_loop_commands)
 
         self.start_fn.run_all()
         self.loop_fn.run_all()

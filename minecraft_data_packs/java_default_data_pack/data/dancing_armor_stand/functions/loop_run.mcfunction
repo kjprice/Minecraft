@@ -1,3 +1,8 @@
+
+# Run before each loop
+
+
+# Run once each loop
 execute at @p[scores={dancing_armor_stand_count=0}] run data merge entity @e[tag=tag_dancing_armor_stand,limit=1] {Pose:{Head:[0f,0f,0f],LeftArm:[0f,0f,0f],RightArm:[0f,0f,0f]}}
 execute at @p[scores={dancing_armor_stand_count=1}] run data merge entity @e[tag=tag_dancing_armor_stand,limit=1] {Pose:{Head:[0f,5f,0f],LeftArm:[-50f,0f,0f],RightArm:[50f,0f,0f]}}
 execute at @p[scores={dancing_armor_stand_count=2}] run data merge entity @e[tag=tag_dancing_armor_stand,limit=1] {Pose:{Head:[0f,10f,0f],LeftArm:[-100f,0f,0f],RightArm:[100f,0f,0f]}}

@@ -16,17 +16,27 @@ def execute_if_score_less_than(selectors, scoreboard_name, score_value, command)
 
 class FunctionLoopRun(MinecraftFunction):
     loop_commands = None
-    each_loop_commands = None
+    end_each_loop_commands = None
+    begin_each_loop_commmands = None
     parent = None
-    def __init__(self, parent:FunctionLoopInterface, commands, each_loop_commands) -> None:
+    def __init__(self, parent:FunctionLoopInterface, commands, begin_each_loop_commmands, end_each_loop_commands) -> None:
         self.loop_commands = commands
-        self.each_loop_commands = each_loop_commands
+        self.begin_each_loop_commmands = begin_each_loop_commmands
+        self.end_each_loop_commands = end_each_loop_commands
         self.parent = parent
         super().__init__('loop_run', data_pack=parent.data_pack, namespace=parent.namespace)
     def build(self):
         scoreboard = self.parent.scoreboard
         delay_in_ticks = self.parent.delay_in_ticks
         commands_count = len(self.loop_commands)
+
+        self.run('')
+        self.run('# Run before each loop')
+        self.run('\n'.join(self.begin_each_loop_commmands))        
+
+
+        self.run('')
+        self.run('# Run once each loop')
         for i, command in enumerate(self.loop_commands):
             if VERBOSE:
                 self.run('')
@@ -54,7 +64,7 @@ class FunctionLoopRun(MinecraftFunction):
 
         self.run('')
         self.run('# Run after each loop')
-        self.run('\n'.join(self.each_loop_commands))
+        self.run('\n'.join(self.end_each_loop_commands))
         
         if VERBOSE:
             self.run(execute_if_score_equals('@p', scoreboard.name, commands_count, 'say All Done!'))
