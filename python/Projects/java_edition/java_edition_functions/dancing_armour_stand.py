@@ -52,11 +52,13 @@ def set_scoreboard():
     return 'scoreboard players set {} {} {}'.format(SCOREBOARD_TARGETS, SCOREBOARD_NAME, SCORBOARD_STARTING_SCORE)
 
 class DancingArmourStandStart(MinecraftFunction):
-    def __init__(self, data_pack, namespace) -> None:
+    commands = None
+    def __init__(self, data_pack, namespace, commands) -> None:
+        self.commands = commands
         super().__init__('loop_run_before', data_pack=data_pack, namespace=namespace)
     def build(self):
-        self.run('kill @e[tag={}]'.format(TAG_NAME))
-        self.run('summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA))
+        for command in self.commands:
+            self.run(command)
 
 class DancingArmourStandAlwaysFacePlayer(MinecraftFunction):
     def __init__(self, data_pack, namespace) -> None:
@@ -106,9 +108,10 @@ class FunctionLoop(MinecraftFunction):
     start_fn = None
     loop_fn = None
     def __init__(self, data_pack, namespace:str) -> None:
-        commands = self.commands_to_iterate()
-        self.start_fn = DancingArmourStandStart(data_pack=data_pack, namespace=namespace)
-        self.loop_fn = FunctionLoopRun(data_pack=data_pack, namespace=namespace, commands=commands)
+        start_commands = self.commands_to_run_first()
+        loop_commands = self.commands_to_iterate()
+        self.start_fn = DancingArmourStandStart(data_pack=data_pack, namespace=namespace, commands=start_commands)
+        self.loop_fn = FunctionLoopRun(data_pack=data_pack, namespace=namespace, commands=loop_commands)
         self.face_player_fn = DancingArmourStandAlwaysFacePlayer(data_pack=data_pack, namespace=namespace)
 
         self.start_fn.run_all()
@@ -124,12 +127,22 @@ class FunctionLoop(MinecraftFunction):
         self.run_function(self.face_player_fn)
     
     # Override
+    def commands_to_run_first(self) -> None:
+        raise Exception('This method should be overriden')
+
+    # Override
     def commands_to_iterate(self) -> None:
         raise Exception('This method should be overriden')
 
 class DancingArmourStand(FunctionLoop):
     def __init__(self, data_pack=None) -> None:
         super().__init__(data_pack, namespace='dancing_armor_stand')
+
+    def commands_to_run_first(self):
+        return [
+            'kill @e[tag={}]'.format(TAG_NAME),
+            'summon minecraft:armor_stand ~ ~ ~-2 {}'.format(BASE_DATA),
+        ]
     
     def commands_to_iterate(self):
         commands = []
