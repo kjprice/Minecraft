@@ -12,12 +12,15 @@ class Airplane(FunctionLoop):
         return []
     
     def commands_to_iterate(self):
+        # TODO: Instead of fill/destroy, create once and tp each time
+        # TODO: Maybe create a custom entity like a boat (can ride and move on its own)
         commands = ['execute at @p run fill ~ ~-1 ~ ~ ~-1 ~ stone']
 
         return commands
     
     def commands_to_run_beginning_of_every_loop(self):
-
+        # TODO: Allow to ascend/descend when looking up/down
+        # TODO: Add cannons - shoot tnt
         return [
             'execute at @p run fill ~-1 ~-1 ~-1 ~1 ~-2 ~1 air replace stone',
             'execute at @p[y_rotation=-46..45] run tp @p ~ ~ ~1',
