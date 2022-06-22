@@ -1,0 +1,1 @@
+scoreboard objectives remove dancing_armor_stand_count

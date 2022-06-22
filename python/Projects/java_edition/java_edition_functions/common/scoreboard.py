@@ -16,3 +16,6 @@ class Scoreboard():
     
     def initialize_players(self) -> str:
         return 'scoreboard players set {} {} {}'.format(self.targets, self.name, self.starting_score)
+    
+    def clear(self) -> str:
+        return 'scoreboard objectives remove {}'.format(self.name)
