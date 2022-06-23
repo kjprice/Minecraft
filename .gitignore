@@ -3,3 +3,4 @@ minecraft_servers/
 minecraft_behavior_packs/collage_behavior_pack/blocks/*.json
 minecraft_resource_packs/collage_resource_pack/textures/blocks/*.png
 # minecraft_behavior_packs/collage_behavior_pack/blocks/collage0x0.json
+data/
