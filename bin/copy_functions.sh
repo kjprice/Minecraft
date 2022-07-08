@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+cd "$(dirname "$0")"
+cd ..
 
 src_directory=./minecraft_behavior_packs/first_behavior_pack/functions
 

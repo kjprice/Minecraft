@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+cd "$(dirname "$0")"
+cd ..
 
 src_directory=./minecraft_resource_packs/collage_resource_pack
 # src_directory=./minecraft_resource_packs/basic_resource_pack

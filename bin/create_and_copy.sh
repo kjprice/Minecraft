@@ -1,4 +1,6 @@
+#!/usr/bin/bash
 cd "$(dirname "$0")"
+
 cd ..
 pwd
 sh bin/run_py.sh

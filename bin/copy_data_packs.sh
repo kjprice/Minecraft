@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+cd "$(dirname "$0")"
+cd ..
 
 src_directory=java_default_data_pack
 

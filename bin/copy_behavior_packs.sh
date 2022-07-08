@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+cd "$(dirname "$0")"
+cd ..
 
 src_directory=./minecraft_behavior_packs/collage_behavior_pack
 # src_directory=./minecraft_behavior_packs/basic_behavior_pack
