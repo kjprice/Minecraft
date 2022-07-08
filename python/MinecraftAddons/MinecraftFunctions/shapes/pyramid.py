@@ -1,5 +1,6 @@
+from ..minecraft_function.minecraft_function import MinecraftFunction
+
 from ..common.fill_command import fill_command
-# Pyramid
 def build_pyramid(y_bottom, y_top):
   y_points_reversed = list(range(y_bottom, y_top))[::-1]
   output = []
@@ -13,6 +14,10 @@ def build_pyramid(y_bottom, y_top):
         z2=(1 + x_diff),
         block="stone"
                  ))
-    return '\n'.join(output)
+  return '\n'.join(output)
 
-# build_pyramid(0, 90)
+class Pyramid(MinecraftFunction):
+    def __init__(self):
+        super().__init__('pyramid')
+    def build(self):        
+        self.run(build_pyramid(0, 90))
