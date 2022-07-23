@@ -7,6 +7,7 @@ from .epic_train.epic_train import EpicTrain
 from .epic_train.roller_coaster import RollerCoaster
 from .shapes.snow_ceiling import SnowCeiling
 from .shapes.pyramid import Pyramid
+from .shapes.aquarium import Aquarium
 
 def create_all():
     survivalGame = SurvivalGame()
@@ -19,6 +20,7 @@ def create_all():
     RollerCoaster().run_all()
     SnowCeiling().run_all()
     Pyramid().run_all()
+    Aquarium().run_all()
 
 if __name__ == '__main__':
     create_all()
