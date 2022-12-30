@@ -146,4 +146,3 @@ fill ~12 80 ~-20 ~12 80 ~-20 redstone_block
 fill ~12 81 ~-20 ~12 81 ~-20 golden_rail 
 fill ~12 82 ~-20 ~12 82 ~-20 air 
 fill ~12 83 ~-20 ~12 83 ~-20 air 
-function 

@@ -9,4 +9,4 @@ class RollerCoaster(MinecraftFunction):
     def build(self):
         self.train.build()
         self.run('\n'.join(self.train.output))
-        self.run('function ')
+        # self.run('function ')
