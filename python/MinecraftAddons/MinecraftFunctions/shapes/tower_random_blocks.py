@@ -28,7 +28,35 @@ def set_random_block(x, y, z, block):
 class TowerRandomBlocks(MinecraftFunction):
     def __init__(self):
         self.dimensions = (8, 6, 8) # X, Y, Z
+        self.is_hollow = True
         super().__init__('shapes/tower_random_blocks')
+    def get_x_range(self, width: int):
+        if self.is_hollow:
+            return [0, width-1]
+
+        return range(width)
+
+    @property
+    def width(self):
+        return self.dimensions[0]
+    @property
+    def height(self):
+        return self.dimensions[1]
+    @property
+    def depth(self):
+        return self.dimensions[2]
+
+    def should_place_block(self, x: int, z: int) -> bool:
+        if not self.is_hollow:
+            return True
+
+        if x == 0 or x == self.width - 1:
+            return True
+        if z == 0 or z == self.depth - 1:
+            return True
+        
+        return False
+
     def build(self):
         blocks_used = []
         width, height, depth = self.dimensions
@@ -37,10 +65,10 @@ class TowerRandomBlocks(MinecraftFunction):
         for x in range(width):
             for y in range(height):
                 for z in range(depth):
-                    block = get_random_block()
-                    # print(block)
-                    self.run(set_random_block(x, y, z, block))
-                    blocks_used.append(block)
+                    if self.should_place_block(x, z):
+                        block = get_random_block()
+                        self.run(set_random_block(x, y, z, block))
+                        blocks_used.append(block)
         
         if PRINT_STATS:
             counter = Counter(blocks_used)
