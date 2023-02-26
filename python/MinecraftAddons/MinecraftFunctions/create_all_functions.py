@@ -9,6 +9,7 @@ from .music.music_notes import MusicNotes
 from .shapes.snow_ceiling import SnowCeiling
 from .shapes.pyramid import Pyramid
 from .shapes.aquarium import Aquarium
+from .shapes.tower_random_blocks import TowerRandomBlocks
 
 def create_all():
     survivalGame = SurvivalGame()
@@ -23,6 +24,7 @@ def create_all():
     SnowCeiling().run_all()
     Pyramid().run_all()
     Aquarium().run_all()
+    TowerRandomBlocks().run_all()
 
 if __name__ == '__main__':
     create_all()
