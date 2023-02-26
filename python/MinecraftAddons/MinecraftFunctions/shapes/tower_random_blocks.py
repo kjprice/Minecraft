@@ -32,6 +32,7 @@ class TowerRandomBlocks(MinecraftFunction):
     def build(self):
         blocks_used = []
         width, height, depth = self.dimensions
+        np.random.seed(1000)
 
         for x in range(width):
             for y in range(height):
@@ -52,7 +53,6 @@ class TowerRandomBlocks(MinecraftFunction):
             df = pd.DataFrame({'block': blocks, 'counts': counts})
             df.to_csv('test.csv')
             df.index = blocks
-            # df = pd.DataFrame(counter)
             fig = df.sort_values('counts').plot(kind='bar',  
                     figsize=(20, 16), fontsize=26).get_figure()
 
