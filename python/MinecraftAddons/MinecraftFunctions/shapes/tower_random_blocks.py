@@ -1,9 +1,11 @@
+from collections import Counter
+
 import numpy as np
+import pandas as pd
 
 from ..minecraft_function.minecraft_function import MinecraftFunction
-from ..common.build_around_player import build_around_player
-# from ..common.fill_command import fill_command
-from ..common.build_empty_cube import build_empty_cube_relative_y
+
+PRINT_STATS = False
 
 BLOCK_TYPES = [
     'wood 0', # Oak Wood
@@ -17,8 +19,10 @@ BLOCK_TYPES = [
     'log 1', # Srpuce Log
 ]
 
-def set_random_block(x, y, z):
-    block = np.random.choice(BLOCK_TYPES)
+def get_random_block():
+    return np.random.choice(BLOCK_TYPES)
+
+def set_random_block(x, y, z, block):
     return f'setblock ~{x} ~{y} ~{z} {block}'
 
 class TowerRandomBlocks(MinecraftFunction):
@@ -26,10 +30,31 @@ class TowerRandomBlocks(MinecraftFunction):
         self.dimensions = (8, 6, 8) # X, Y, Z
         super().__init__('shapes/tower_random_blocks')
     def build(self):
+        blocks_used = []
         width, height, depth = self.dimensions
 
         for x in range(width):
             for y in range(height):
                 for z in range(depth):
-                    self.run(set_random_block(x, y, z))
+                    block = get_random_block()
+                    # print(block)
+                    self.run(set_random_block(x, y, z, block))
+                    blocks_used.append(block)
         
+        if PRINT_STATS:
+            counter = Counter(blocks_used)
+            blocks = []
+            counts = []
+            for block in counter:
+                blocks.append(block)
+                counts.append(counter[block])
+
+            df = pd.DataFrame({'block': blocks, 'counts': counts})
+            df.to_csv('test.csv')
+            df.index = blocks
+            # df = pd.DataFrame(counter)
+            fig = df.sort_values('counts').plot(kind='bar',  
+                    figsize=(20, 16), fontsize=26).get_figure()
+
+            fig.savefig('test.pdf')
+            
