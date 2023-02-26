@@ -5,6 +5,7 @@ from .powers.equip_netherite import EquipNetherite
 from .clear.replace_unwanted import ReplaceUnwanted
 from .epic_train.epic_train import EpicTrain
 from .epic_train.roller_coaster import RollerCoaster
+from .music.music_notes import MusicNotes
 from .shapes.snow_ceiling import SnowCeiling
 from .shapes.pyramid import Pyramid
 from .shapes.aquarium import Aquarium
@@ -17,6 +18,7 @@ def create_all():
     EquipNetherite().run_all()
     ReplaceUnwanted().run_all()
     EpicTrain().run_all()
+    MusicNotes().run_all()
     RollerCoaster().run_all()
     SnowCeiling().run_all()
     Pyramid().run_all()
